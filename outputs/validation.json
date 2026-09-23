@@ -1,0 +1,17 @@
+{
+  "notebook_executed": true,
+  "format_valid": true,
+  "error_outputs": 0,
+  "visual_review": "Completed: nine figure PNGs, rendered notebook summary and takeaways, 13 rendered final slides. HTML: nine images, zero broken. PowerPoint desktop opening not tested.",
+  "versions": {
+    "pandas": "3.0.1",
+    "numpy": "2.3.5",
+    "matplotlib": "3.11.2",
+    "scipy": "1.18.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "nbconvert": "7.17.1",
+    "ipykernel": "7.3.0",
+    "openpyxl": "3.1.5"
+  }
+}

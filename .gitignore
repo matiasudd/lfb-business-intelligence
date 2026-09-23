@@ -1,0 +1,14 @@
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.jupyter/
+*.tmp
+.matplotlib/
+.build/
+outputs/*.validation.json
+.chart-data-*/
+outputs/C1_LFB.pptx

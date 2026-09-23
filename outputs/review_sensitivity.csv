@@ -1,0 +1,7 @@
+min_monthly_n,consecutive_months,candidate_boroughs,scope
+50,3,19,2023-01 to 2024-11; incomplete December excluded
+50,6,15,2023-01 to 2024-11; incomplete December excluded
+100,3,19,2023-01 to 2024-11; incomplete December excluded
+100,6,15,2023-01 to 2024-11; incomplete December excluded
+200,3,19,2023-01 to 2024-11; incomplete December excluded
+200,6,15,2023-01 to 2024-11; incomplete December excluded

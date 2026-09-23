@@ -1,0 +1,23 @@
+Column,Sample record,Description
+IncidentNumber,000008-01012018,LFB Incident Number
+CalYear,2018,Year of 999 call
+HourOfCall,3,Hour of 999 call
+ResourceMobilisationId,5055153,LFB Resource Mobilisation ID
+Resource_Code,A392,LFB Resource Code
+PerformanceReporting,1,First Pump arrived at incident
+DateAndTimeMobilised,01/01/2018 00:04:25,Date and time of mobilised (GMT)
+DateAndTimeMobile,01/01/2018 00:05:38,Date and time of mobile (GMT)
+DateAndTimeArrived,01/01/2018 00:10:13,Date and time arrived (GMT)
+TurnoutTimeSeconds,73,Turnout time in seconds
+TravelTimeSeconds,275,Travel time in seconds
+AttendanceTimeSeconds,348,Attendance time in seconds
+DateAndTimeLeft,01/01/2018 00:16:38,Date and time left the incident (GMT)
+DateAndTimeReturned,2018-01-01 00:22:45,Date and time returned to station (GMT)
+DeployedFromStation_Code,A39,Deployed from station code
+DeployedFromStation_Name,Finchley,Deployed from station name
+DeployedFromLocation,Home Station,Deployed from location
+PumpOrder,1,Pump order
+PlusCode_Code,Initial,Code of Plus Code
+PlusCode_Description,Initial Mobilisation,Description of Plus Code
+DelayCodeId,9,Delay code ID
+DelayCode_Description,"Traffic, roadworks, etc",Delay code description
