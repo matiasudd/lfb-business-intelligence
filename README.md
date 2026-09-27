@@ -36,6 +36,7 @@ included; it is not a first-appliance response standard. See `docs/KPI.md`.
 - `outputs/summary.json` and `*_metrics.csv`: reproducible numerical evidence.
 - `docs/CASE_BRIEF.md`, `KPI.md`, `DEFENSA_ES.md`: decision, measurement and study guide.
 - `PROCESS_LOG.md`: AI contribution, verification and outstanding human review.
+- `docs/AI_INTERACTIONS.md`: selected original prompts and relevant AI responses.
 - `docs/ENTREGA.md`: publication and Canvas checklist.
 
 ## Reproduce

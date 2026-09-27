@@ -16,8 +16,10 @@ this as evidence that both students have already verified the work.
 5. Matias confirmed both members have GitHub accounts, no repository yet, London is
    permitted and no additional rubric is available.
 
-These are summaries, not purported verbatim quotations. The conversation retains
-the original prompts and responses.
+These are summaries, not purported verbatim quotations. Selected original prompts
+and relevant responses are included in [AI_INTERACTIONS.md](docs/AI_INTERACTIONS.md).
+That file preserves the language of the conversation and distinguishes user
+choices from assistant proposals. It is an excerpt, not a complete transcript.
 
 ## AI contribution and consequential suggestions
 
@@ -54,11 +56,12 @@ they are extreme; using post-arrival variables as dispatch-time predictors.
 
 | Member | Actual work performed | Evidence/commit | Verification and date |
 |---|---|---|---|
-| Matias Muñoz Hoffmann | Pending team entry | Pending | Pending |
-| Clemente Ibarra | Pending team entry | Pending | Pending |
+| Matias Muñoz Hoffmann | Proposed the fire-service topic; selected London; supplied professor instructions; confirmed case permission; selected private GitHub publication and completed account authentication; requested learning and compliance review | Conversation excerpts in docs/AI_INTERACTIONS.md | Independent technical review and acceptance of analytical choices not yet confirmed |
+| Clemente Ibarra | Identified as teammate by Matias; no direct contribution evidence supplied in this conversation | Not yet supplied | Not yet confirmed |
 
 ## Feedback record
 
-No C1 feedback has been received in this preparation. For each comment record the
+No C1 feedback has been supplied in this conversation. This does not establish
+whether the team received feedback elsewhere. For each comment record the
 source, change requested, accepted/adapted/rejected decision, reason and commit.
 This record must continue into C2.
