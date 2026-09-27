@@ -15,8 +15,7 @@ levels or dispatch rules from this dataset alone.
 ## Why this case
 
 The public source provides timestamped records, a continuous outcome and operational
-categories. That supports C1 data-quality assessment and descriptive EDA, and a
-later comparison of predictive models in C2. London was accepted as the project's
+categories. That supports C1 data-quality assessment and descriptive EDA, and comparisons across districts and time periods. London was accepted as the project's
 geography by the team, which reports that the case is permitted for the course.
 
 ## Scope and data flow
@@ -36,13 +35,3 @@ seconds. A 2024 LFB methodology response documents exclusions over 20 minutes in
 published performance calculations. That is consistent with selection in this
 extract, but does not prove the exact extraction rules used for this CSV.
 Our conclusions concern published records, not the unobserved extreme tail.
-
-## C2 extension
-
-Possible outcome: mobilisation-to-arrival seconds. Use dispatch-time available
-calendar, origin and destination variables, subject to verifying availability and
-coverage. Evaluate a simple baseline and candidate models on later dates; group or
-separate incidents at split boundaries to avoid repeated-incident contamination.
-Do not use arrival timestamps, realised travel/turnout times, recorded delay
-reasons, or eventual arrival rank as predictors. Audit borough and tail errors.
-Keep C1 feedback as incorporated, adapted or rejected with justification.

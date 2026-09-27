@@ -17,7 +17,8 @@
 
 ## Proposed review heuristic
 
-Flag a borough if its monthly P90 is above the global P90 for the same month,
+Use January 2023 to November 2024 for both the main rule and sensitivity analysis,
+excluding incomplete December 2024. Flag a borough if its monthly P90 is above the global P90 for the same month,
 with at least 100 eligible mobilisations in each month, for at least three
 consecutive months. This is an academic prioritisation heuristic, not a statutory
 threshold, significance test or policy endorsed by LFB. The minimum n stabilises

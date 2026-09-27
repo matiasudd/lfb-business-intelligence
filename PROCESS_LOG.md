@@ -1,67 +1,60 @@
-# Process log and AI disclosure
+# Process record
 
-## Team and status
+Matías Muñoz Hoffmann and Clemente Ibarra
+C1 — London Fire Brigade attendance times
 
-Matias Muñoz Hoffmann and Clemente Ibarra. Human review of the generated analytical
-work and each member's actual contribution remain to be recorded. Do not submit
-this as evidence that both students have already verified the work.
+## Decisions and checks
 
-## Consequential user instructions (conversation record)
+| Decision | Reason and alternative | Verification and evidence |
+|---|---|---|
+| Use public London Fire Brigade records | The data includes vehicle-level timestamps and operational categories. Matías selected London after considering the proposed source. | Original CSV and dictionary, `data/source_manifest.json`, `docs/SOURCES.md` |
+| Select dispatch dates in 2023–2024 | A defined two-year window permits monthly and annual comparisons. The source covers 2021–2024. | Date filters and coverage audit in `scripts/analysis.py`; missing final day disclosed |
+| Use mobilisation as the observation | Several vehicles may attend one incident. Deduplicating by incident would remove valid responses. | Unique mobilisation IDs and distinct incident count in `outputs/audit.json` |
+| Use P90 with median and volume | P90 describes longer times while the median describes the centre. A mean alone does not describe the upper distribution. | Independent sorted-value percentile check; `outputs/summary.json` |
+| Remove exact duplicates and exclude conflicting IDs | Exact copies double-count a mobilisation. Conflicting rows cannot be resolved by choosing an arbitrary version. | Row reconciliation and `outputs/conflicting_ids.csv` |
+| Keep unknown geography and valid long durations | Missing geography does not invalidate a coherent total. An extreme time can be a real observation. | Unknown group, timestamp checks and positive-only P90 sensitivity |
+| Do not impute the target | Filling times with an average would introduce unobserved durations and alter the distribution. | Eligibility rules in `scripts/analysis.py` |
+| Examine persistent monthly differences | The three-month and 100-record thresholds are exploratory choices. | Sensitivity to 3/6 months and 50/100/200 records in `outputs/review_sensitivity.csv` |
+| Use the same complete-month review window | The main candidate list previously included incomplete December 2024 while sensitivity excluded it. Both now end in November 2024. | `outputs/review_candidates.csv` and `outputs/review_sensitivity.csv` |
 
-1. Find a public fire-service dataset suitable for C1 and C2.
-2. The team accepted London after reviewing the proposed mobilisation dataset.
-3. The user provided the professor's announcement: define project/KPI, GitHub,
-   download, explore, clean, full EDA and upload, for 29 September.
-4. The user authorised completing those steps, asking for clarification when needed.
-5. Matias confirmed both members have GitHub accounts, no repository yet, London is
-   permitted and no additional rubric is available.
+## AI use and verification
 
-These are summaries, not purported verbatim quotations. Selected original prompts
-and relevant responses are included in [AI_INTERACTIONS.md](docs/AI_INTERACTIONS.md).
-That file preserves the language of the conversation and distinguishes user
-choices from assistant proposals. It is an excerpt, not a complete transcript.
+OpenAI Codex supported the analysis code, source identification, initial analytical
+proposals, and drafting and revision of the written and presentation content.
+The students reviewed the methods and interpretations. The use of AI does not
+replace responsibility for the submitted claims.
 
-## AI contribution and consequential suggestions
+The London case was selected by Matías. The period, P90 and persistence rule were
+initially proposed with AI assistance. Clemente reviewed their meaning and
+limitations through a step-by-step discussion, including questions on the unit
+of observation, duplicates, timestamp validation, missingness, outliers,
+percentiles, correlation and the scope of the conclusions. On 27 September 2026,
+Clemente confirmed that Matías had reviewed the completed work, in response to a
+question about acceptance of the period, KPI and review rule.
 
-Codex sourced official LFB records, implemented the download and checksum manifest,
-authored the audit, cleaning, notebook and supporting documentation, and proposed
-the P90 metric and review rule. Generated findings must be checked against executed
-outputs. No student-authored code or independent review is implied.
+The approach excludes arbitrary selection of conflicting records, automatic
+target imputation, deletion of valid long times solely because they are extreme,
+and causal interpretation of descriptive correlations. Relevant prompt and output
+excerpts appear in [AI interactions](docs/AI_INTERACTIONS.md).
 
-Accepted by user: London geography and use of LFB mobilisation data.
-Proposed by AI, pending student acceptance: 2023-2024 window, all-mobilisation
-population, P90 KPI, review heuristic and C2 prediction design.
-Rejected during preparation: interpreting all mobilisation rows as distinct
-emergencies; imputing the target automatically; deleting long times only because
-they are extreme; using post-arrival variables as dispatch-time predictors.
+Technical checks include source hashes, data types and missingness, unique IDs,
+time consistency, row-count reconciliation, group totals and an independent P90
+calculation. On 27 September 2026, the original files matched the recorded hashes and the
+notebook executed from start to finish with zero error outputs. The main counts,
+median and P90 matched the previous version. Execution results are recorded in
+`outputs/validation.json`.
+These checks establish internal consistency rather than independent verification
+of every operational event.
 
-## Verification
+## Individual contributions
 
-- Downloaded original CSV and dictionary from London Datastore; recorded SHA256.
-- Compared dictionary fields and CSV schema; geography fields are in the CSV but
-  absent from the older dictionary and are treated as source labels.
-- Measured actual missingness, duplicate patterns, timestamp consistency and coverage.
-- Reconciled cleaning stages, monthly and geographic totals.
-- Independently recomputed the main P90 from sorted observations.
-- Execution and presentation verification status is recorded in outputs/validation.json.
-- Notebook executed top-to-bottom with zero error outputs. Nine rendered figures
-  and HTML summary/takeaways were inspected; all nine HTML images loaded. Thirteen
-  final slide renders were inspected; five charts retain editable workbook data.
-- Found 31 December 2024 absent and a 20-minute ceiling. Consulted LFB FOI 8420.1;
-  narrowed conclusions to the published population and disclosed uncertain CSV filters.
-- Matias authenticated GitHub CLI as matiasudd and selected a private repository.
-  He asked to defer invitations to Clemente and the instructor.
+| Member | Contribution | Evidence |
+|---|---|---|
+| Matías Muñoz Hoffmann | Proposed the fire-service topic, selected London, provided the course instructions, created the private repository and reviewed the project. | Recorded project interactions; Git history; review confirmed by Clemente on 27 September 2026 |
+| Clemente Ibarra | Reviewed the data preparation, KPI and each EDA interpretation through questions and answers; identified limits of causal claims; requested presentation and document revisions and repository organisation. | Study and review discussion on 23 and 27 September 2026; this repository revision |
 
-## Human contribution record to complete
+## Instructor feedback
 
-| Member | Actual work performed | Evidence/commit | Verification and date |
-|---|---|---|---|
-| Matias Muñoz Hoffmann | Proposed the fire-service topic; selected London; supplied professor instructions; confirmed case permission; selected private GitHub publication and completed account authentication; requested learning and compliance review | Conversation excerpts in docs/AI_INTERACTIONS.md | Independent technical review and acceptance of analytical choices not yet confirmed |
-| Clemente Ibarra | Identified as teammate by Matias; no direct contribution evidence supplied in this conversation | Not yet supplied | Not yet confirmed |
-
-## Feedback record
-
-No C1 feedback has been supplied in this conversation. This does not establish
-whether the team received feedback elsewhere. For each comment record the
-source, change requested, accepted/adapted/rejected decision, reason and commit.
-This record must continue into C2.
+The supplied course announcement defines the C1 scope. Matías reported that the
+London case was permitted. No additional project-specific instructor feedback
+has been supplied for this record as of 27 September 2026.

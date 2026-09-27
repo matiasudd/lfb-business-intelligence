@@ -1,48 +1,61 @@
-# London Fire Brigade: mobilisation to arrival
+# London Fire Brigade attendance times
 
-Business Intelligence IIB423T-2 | C1 | 29 September 2026
+Business Intelligence C1 — 29 September 2026
+Matías Muñoz Hoffmann and Clemente Ibarra
 
-**Team:** Matias Muñoz Hoffmann and Clemente Ibarra.
+## Project
 
-**Status:** C1 preparation for team review; publication metadata is in docs/ENTREGA.md.
-The team confirmed that the London case is permitted; no additional rubric is available.
+Which London districts and dispatch hours show persistently long vehicle
+mobilisation-to-arrival times and merit operational investigation?
 
-## Decision and scope
+The study uses published London Fire Brigade pumping-appliance mobilisation
+records with dispatch dates in 2023–2024, on the GMT basis documented by the
+source. One row represents one vehicle mobilisation. Several vehicles can attend
+one incident. The data includes responses beyond fires.
 
-Identify boroughs and dispatch hours that merit an operational review of long
-mobilisation-to-arrival times. This is an academic diagnostic study, not an
-operational dispatch tool or an evaluation of individual firefighters.
+The main KPI is the 90th percentile of attendance time in minutes. Among 384,627
+eligible mobilisations, the median is 5.65 minutes and P90 is 9.20 minutes.
+The measure starts at mobilisation and excludes earlier call handling.
 
-Source: [London Fire Brigade Mobilisation Records](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65),
-2021-2024 CSV; analysis period: dispatch timestamps in 2023-2024 (GMT as documented).
-Each row represents a vehicle mobilisation. Multiple mobilisations can belong to
-the same incident. The population covers published pumping-appliance responses,
-not only fires. No incident-type information is available in this file.
-The extract contains only Initial mobilisations, no durations above 20 minutes,
-and no records on 31 December 2024. Results concern this published population;
-December and annual 2024 totals are incomplete.
+## Files to review
 
-The main KPI is P90 of AttendanceTimeSeconds / 60 among eligible records.
-It starts at mobilisation, not at the emergency call. All vehicle arrivals are
-included; it is not a first-appliance response standard. See `docs/KPI.md`.
+| File | Content |
+|---|---|
+| [Executed notebook](notebooks/C1_LFB.ipynb) | Question, data quality, cleaning, validation, full EDA and conclusions |
+| [Analysis in HTML](outputs/C1_LFB.html) | The same executed notebook in browser-readable form |
+| [Presentation](presentation/C1_LFB.pptx) | English presentation and technical appendix |
+| [Process record](PROCESS_LOG.md) | Decisions, checks, individual contributions and AI disclosure |
+| [Case brief](docs/CASE_BRIEF.md) | Decision, population and scope |
+| [KPI definition](docs/KPI.md) | Measurement and review rule |
+| [Sources](docs/SOURCES.md) | Data provenance and evidence boundaries |
 
-## Deliverables
+`scripts/` contains the reproducible analysis. `outputs/` contains its generated
+audit tables, analytical results and figures. `data/source_manifest.json` records
+the source URLs, retrieval information and SHA256 file hashes. There is one
+presentation and one analytical notebook in the submitted repository.
 
-- `notebooks/C1_LFB.ipynb`: executed analysis, methods, evidence and interpretation.
-- `outputs/C1_LFB.html`: portable rendered notebook.
-- `outputs/C1_LFB_reviewed.pptx`: 13-slide presentation with editable charts.
-- `outputs/figures/`: distributions, comparisons, temporal patterns and correlations.
-- `outputs/audit.json`, `row_flow.csv`, `raw_profile.csv`: quality and reconciliation.
-- `outputs/summary.json` and `*_metrics.csv`: reproducible numerical evidence.
-- `docs/CASE_BRIEF.md`, `KPI.md`, `DEFENSA_ES.md`: decision, measurement and study guide.
-- `PROCESS_LOG.md`: AI contribution, verification and outstanding human review.
-- `docs/AI_INTERACTIONS.md`: selected original prompts and relevant AI responses.
-- `docs/ENTREGA.md`: publication and Canvas checklist.
+## Findings and limits
 
-## Reproduce
+Hillingdon has the highest P90 among named districts, at 10.67 minutes. The highest
+pooled hourly P90 occurs at 11:00 GMT, at approximately 10.03 minutes. These are
+descriptive comparisons without adjustment for distance or incident mix.
 
-Python 3.12 was used. From this directory, create a virtual environment, install
-`requirements.txt`, and run:
+The source has no records for 31 December 2024. December and annual 2024 totals
+are incomplete. All observed records are Initial and attendance durations do not
+exceed 20 minutes. The exact source selection rules are not fully confirmed.
+The data cannot describe the unobserved extreme tail or all actual demand.
+Unknown geography remains visible. Repeated incident IDs represent multiple
+mobilisations and are not automatically duplicates.
+
+The district review rule and its sensitivity analysis both use January 2023 to
+November 2024. The proposed rule identifies 19 districts at three consecutive
+months and 15 at six months. These thresholds support investigation and are not
+official service standards.
+
+## Reproduction
+
+Python 3.12 and the packages pinned in `requirements.txt` are required. Run from
+the repository root:
 
 ```powershell
 python -m venv .venv
@@ -51,30 +64,18 @@ python -m venv .venv
 .venv/Scripts/python.exe scripts/build_notebook.py
 ```
 
-The build executes the notebook and regenerates tables, charts and HTML. The
-notebook can also run top-to-bottom in a Python kernel with these dependencies.
-Raw files and the processed CSV are excluded from Git. `data/source_manifest.json`
-records the exact source URLs, retrieval timestamp and SHA256 checksums. Source
-updates may change the download; retain the submitted raw snapshot separately
-and check the manifest before comparing reproduced results. The downloader fails
-on checksum drift rather than silently replacing an existing snapshot identity.
+On macOS or Linux, use `.venv/bin/python` instead of `.venv/Scripts/python.exe`.
+The build executes the notebook and regenerates the analytical tables, figures
+and HTML. The presentation is an editable PowerPoint document.
 
-## Interpretation limits
+The original CSV is about 168 MB and is excluded from Git. The downloader checks
+its SHA256 against the recorded snapshot and fails if the source has changed.
+The processed CSV is generated in `data/processed/`. The submitted notebook and
+HTML contain saved results, so reading the analysis does not require a download.
 
-Descriptive associations do not establish causality. Vehicle mix, incident type,
-distance, traffic and resource availability are not controlled. Missing geographic
-labels remain Unknown. No imputation of the target, no arbitrary outlier trimming,
-and no claim of a statutory service-level breach. Multiple rows per incident
-are not independent emergency events. The analysis does not extrapolate to Chile.
+## Attribution
 
-## Attribution and use
-
-Contains London Fire Brigade / Greater London Authority information; source
-portal lists Open Government Licence v2. Cite the publisher and the dataset when
-reusing results. The publisher's dictionary is retained locally and exported to
-`outputs/source_dictionary.csv`. This repository does not claim ownership of
-source data. No names of victims, home addresses or credentials are required.
-
-AI-assisted preparation is disclosed in PROCESS_LOG.md. Students must understand,
-verify and accept the submission; the log does not claim that human review or an
-individual contribution has occurred when it has not.
+Contains London Fire Brigade / Greater London Authority information. The source
+catalogue lists Open Government Licence v2. Source links and interpretation
+limits are documented in `docs/SOURCES.md`. AI assistance and student review are
+recorded in `PROCESS_LOG.md`.

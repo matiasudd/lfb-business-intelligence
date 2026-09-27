@@ -13,7 +13,7 @@
    supports a selection caveat; it does not independently verify all CSV filters.
 4. Course calendar supplied locally:
    Calendarization_2026_Third_Term_Business_Intelligence_IIB423T.docx, sections 6-8.
-5. Professor announcement supplied as WhatsApp image in the conversation:
+5. Professor announcement supplied as an image:
    presentation 29 September; project/KPI, GitHub, download, exploration, cleaning,
    full EDA (histograms, densities, correlations) and upload.
 

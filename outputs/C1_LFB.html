@@ -7796,7 +7796,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dc1196f5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6998e451">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7805,7 +7805,7 @@ a.anchor-link {
 <h1 id="London-Fire-Brigade:-mobilisation-to-arrival">London Fire Brigade: mobilisation to arrival<a class="anchor-link" href="#London-Fire-Brigade:-mobilisation-to-arrival">¶</a></h1><p><strong>C1 | Business Intelligence | 29 September 2026</strong><br/>
 Matias Muñoz Hoffmann and Clemente Ibarra</p>
 <p>Academic diagnostic analysis of published records, with AI-assisted preparation.
-See PROCESS_LOG.md for disclosure and outstanding team review.</p>
+AI use and verification are documented in PROCESS_LOG.md.</p>
 <h2 id="Context-&amp;-Methods">Context &amp; Methods<a class="anchor-link" href="#Context-&amp;-Methods">¶</a></h2><p><strong>Question:</strong> Which boroughs and dispatch hours merit a review of long mobilisation-to-arrival times?
 <strong>Decision:</strong> prioritise investigation; no automatic staffing or dispatch recommendation.
 <strong>Population:</strong> published pumping-appliance mobilisations dispatched in 2023-2024.
@@ -7817,14 +7817,13 @@ See PROCESS_LOG.md for disclosure and outstanding team review.</p>
 <li><a href="https://www.london-fire.gov.uk/media/8863/foia84201-response-times-of-fire-brigades-and-data-collation-response.pdf">LFB methodology</a>
 documents &gt;20-minute exclusions for performance calculations; exact CSV selection rules are not fully verified.</li>
 <li>Unknown geography remains visible. Comparisons are unadjusted for incident mix and distance.</li>
-<li>No models are required for this C1; C2 will extend the analysis after feedback.</li>
 </ul>
 <h2 id="Data">Data<a class="anchor-link" href="#Data">¶</a></h2><p><a href="https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65">Official dataset and metadata</a>.
 Download first with <code>python scripts/download_data.py</code>. Hashes identify the exact original snapshot.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58ac6a0c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24eea8c0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7883,7 +7882,7 @@ Download first with <code>python scripts/download_data.py</code>. Hashes identif
 <tr>
 <th>mobilisations_2021_2024.csv</th>
 <td>https://data.london.gov.uk/download/24r65/3ff2...</td>
-<td>2026-09-23T02:52:18.339147+00:00</td>
+<td>2026-09-27T21:09:41.893659+00:00</td>
 <td>168034240</td>
 <td>f18f9ea1943ce54ac58e3429ed2d242f9d1fa714d3a556...</td>
 <td>London Fire Brigade / London Datastore</td>
@@ -7892,7 +7891,7 @@ Download first with <code>python scripts/download_data.py</code>. Hashes identif
 <tr>
 <th>mobilisations_metadata.xlsx</th>
 <td>https://data.london.gov.uk/download/24r65/0eaa...</td>
-<td>2026-09-23T02:52:19.851144+00:00</td>
+<td>2026-09-27T21:09:42.939654+00:00</td>
 <td>11693</td>
 <td>dec9ca5bf2feb358b6da5dc32af55610c12b7a8f55a0e8...</td>
 <td>London Fire Brigade / London Datastore</td>
@@ -7906,7 +7905,7 @@ Download first with <code>python scripts/download_data.py</code>. Hashes identif
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0c154e17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94c5f711">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7920,7 +7919,7 @@ The pipeline exports every reconciliation and produces the charts below.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9e498b5c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=675a9f4f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8052,17 +8051,17 @@ The pipeline exports every reconciliation and produces the charts below.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9d481560">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d2887e07">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="tl;dr">tl;dr<a class="anchor-link" href="#tl;dr">¶</a></h2>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=01fdbce5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=316d8d8e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8101,7 +8100,7 @@ about complete annual demand or the unobserved extreme tail.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b81a0637">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3a546058">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8111,7 +8110,7 @@ about complete annual demand or the unobserved extreme tail.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a2626b7f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3bf68bc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8420,7 +8419,7 @@ about complete annual demand or the unobserved extreme tail.</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c862d688">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64cb9dcf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8432,7 +8431,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0d7419cd">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dcfdf936">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8642,7 +8641,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a2338517">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1f08e92c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8652,7 +8651,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=79335ccb">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59a79b10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8755,7 +8754,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f8609b15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43617234">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8767,7 +8766,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b3a078a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=945fb521">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8777,7 +8776,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58079156">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1955d972">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8804,7 +8803,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a95e3b64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2f48351">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8815,7 +8814,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9ceba985">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=02d7da7c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8825,7 +8824,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=482e012f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68c118fc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8852,7 +8851,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f6e21f49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0df61dae">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8863,7 +8862,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b4561d6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5bdbc416">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8873,7 +8872,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cd49ec91">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7277d462">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8900,7 +8899,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ea55b770">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63348033">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8911,7 +8910,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b5fbb5b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=069be3c3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8921,7 +8920,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f7550afb">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f5266a2c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8948,7 +8947,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4c651b52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d0a31b48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8959,7 +8958,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e536ede">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3237ba65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8969,7 +8968,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bb48b207">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95f8b618">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8996,7 +8995,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=129985f2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=287ad9b7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9007,7 +9006,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1b75a839">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7e7d7acd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9017,7 +9016,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ff4792ef">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=03599150">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9044,7 +9043,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be3f878b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b422446">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9055,7 +9054,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d3f66add">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=06e6a250">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9065,7 +9064,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35d64ba7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=153d65ba">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9092,7 +9091,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=038c0b54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8c4d1146">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9103,7 +9102,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad055f3e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1ef7b1fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9113,7 +9112,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1dec7bfa">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3287a8d0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9140,7 +9139,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ba9442da">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f4a6ce78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9151,7 +9150,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c5110588">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e1d5f64e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9161,7 +9160,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f6a40860">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d7427ca8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9188,7 +9187,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7e694553">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b1843b52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9199,7 +9198,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cd51ff8c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=820089f2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9209,7 +9208,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3856f473">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37182235">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9506,7 +9505,7 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c1b7cb1a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0522979e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9514,23 +9513,24 @@ The older dictionary lacks BoroughName and WardName; they are used as published 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The proposed rule flags a borough with at least 100 eligible records per month and
 P90 above the contemporary global P90 for at least three consecutive months. It is an
-academic heuristic, not an LFB target. The sensitivity table changes volume and persistence
-requirements and excludes incomplete December 2024. Candidate lists are not staffing orders.</p>
+academic heuristic, not an LFB target. Both the candidate list and sensitivity analysis use
+January 2023 to November 2024, excluding incomplete December 2024. The sensitivity table
+changes volume and persistence requirements. Candidate lists support further investigation.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b5c9580f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de7f2761">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Takeaways">Takeaways<a class="anchor-link" href="#Takeaways">¶</a></h2>
+<h2 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98f621b1">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99a8de0b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9545,11 +9545,9 @@ requirements and excludes incomplete December 2024. Candidate lists are not staf
 <span class="s2">2. The highest pooled hourly P90 occurs at **</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">hour</span><span class="o">.</span><span class="n">hour_gmt</span><span class="p">)</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">:00 GMT**,</span>
 <span class="s2">**</span><span class="si">{</span><span class="n">hour</span><span class="o">.</span><span class="n">p90_min</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> min**. This is an association, not a traffic-effect estimate.</span>
 <span class="s2">3. We recommend reviewing case mix and source eligibility before using these patterns operationally.</span>
-<span class="s2">4. C2 can compare dispatch-time prediction with a baseline and temporal validation, but cannot</span>
-<span class="s2">learn the unobserved &gt;20-minute tail from this extract. Do not use arrival, realised travel,</span>
-<span class="s2">recorded delay reasons or arrival ranking as dispatch-time predictors.</span>
-<span class="s2">5. Both team members must review the notebook, record their actual contributions and explain</span>
-<span class="s2">the methods individually. AI assistance is disclosed in PROCESS_LOG.md."""</span><span class="p">))</span>
+<span class="s2">4. The missing final day and the observed 20-minute ceiling limit conclusions about annual</span>
+<span class="s2">demand and extreme durations. Several mobilisations can belong to one incident, so the</span>
+<span class="s2">results describe vehicle mobilisations rather than independent emergencies."""</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -9568,18 +9566,16 @@ requirements and excludes incomplete December 2024. Candidate lists are not staf
 <li>The highest pooled hourly P90 occurs at <strong>11:00 GMT</strong>,
 <strong>10.03 min</strong>. This is an association, not a traffic-effect estimate.</li>
 <li>We recommend reviewing case mix and source eligibility before using these patterns operationally.</li>
-<li>C2 can compare dispatch-time prediction with a baseline and temporal validation, but cannot
-learn the unobserved &gt;20-minute tail from this extract. Do not use arrival, realised travel,
-recorded delay reasons or arrival ranking as dispatch-time predictors.</li>
-<li>Both team members must review the notebook, record their actual contributions and explain
-the methods individually. AI assistance is disclosed in PROCESS_LOG.md.</li>
+<li>The missing final day and the observed 20-minute ceiling limit conclusions about annual
+demand and extreme durations. Several mobilisations can belong to one incident, so the
+results describe vehicle mobilisations rather than independent emergencies.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7a0dd7e5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9276a02b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

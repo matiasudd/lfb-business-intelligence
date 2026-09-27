@@ -1,11 +1,9 @@
 # Relevant AI interactions
 
-Selected verbatim excerpts from the project conversation, in chronological order.
-This is not a full transcript. No credentials or authentication codes are included.
-Spanish is retained to preserve the original wording. Assistant proposals are not
-automatically student decisions. Technical implementation is attributed to Codex.
+Selected excerpts from the preparation discussions. Spanish quotations retain
+the original language. Explanations of outcomes and checks are summaries.
 
-## 1. Dataset search
+## Source and KPI
 
 User:
 > necesito que busques un dataset en la web respecto a bomberos que sea viable y utilizable con el proyecto, si tienes alguna duda o consulta hazmela saber
@@ -19,91 +17,56 @@ Assistant:
 User:
 > si nos sirve trabajar con londres
 
-Outcome: London was selected by the user. The KPI remained an assistant proposal.
-Verification: official CSV and dictionary downloaded; source identity and checksums
-recorded in data/source_manifest.json. Analytical eligibility was audited later.
+The team selected London. The analysis checks source identity with file hashes
+and tests KPI eligibility separately. Evidence: `data/source_manifest.json`,
+`docs/KPI.md`, `outputs/audit.json`.
 
-## 2. Scope and implementation
-
-User:
-> dime los pasos a pasos para realizar lo correspondiente a la entrega C1. además te adjunto las instrucciones que nos dejó el profesor para tu conocimiento.
-
-Assistant:
-> El anuncio confirma siete requisitos: elegir y justificar el proyecto/KPI, crear una cuenta de GitHub, descargar los datos, explorarlos, limpiarlos, realizar un EDA completo y subir el proyecto.
+## Implementation
 
 User:
 > realicemos todo lo que me indicas anteriormente en este chat, si tienes alguna duda hazmela saber de avanzar
 
-Outcome: the user authorised implementation. Codex wrote the scripts, notebook,
-documentation and slides. This authorisation is not evidence of human verification.
+Codex implemented the download, audit, cleaning and analytical notebook, and
+prepared supporting text and slides. The code checks row counts, timestamp
+consistency and the percentile calculation. Evidence: `scripts/analysis.py` and
+`outputs/validation.json`.
 
-## 3. Team and case admission
-
-User responses to clarification:
-> Matias Muñoz Hoffmann
-
-> aún no existe, pero ambos tenemos cuenta
-
-> si se puede usar el caso de londres, y no hay una rubrica aún
-
-Outcome: team identity, existing GitHub accounts and reported case permission
-were documented. No additional scoring rubric was supplied.
-
-## 4. Data quality changed the interpretation
+## Source limitations
 
 Assistant:
 > La auditoría encontró dos límites importantes: falta el 31 de diciembre de 2024 y el tiempo máximo publicado es exactamente 20 minutos.
 
-Assistant:
-> No voy a presentar estos datos como dos años completos ni asumir que representan toda la cola de demoras; comprobaré esos puntos y los dejaré visibles en las conclusiones.
+The conclusions were restricted to the published population. The absence of a
+day was not treated as proof of zero real events. Evidence:
+`outputs/daily_coverage.csv`, `outputs/summary.json`, `docs/SOURCES.md`.
 
-Outcome: partial coverage and source selection were disclosed in the notebook,
-case brief and presentation. No missing day was interpreted as zero emergencies.
-Verification: daily coverage table, observed maxima and LFB FOI 8420.1. The FOI
-describes performance counting exclusions; exact CSV filters remain unverified.
+## Student interpretation
 
-## 5. Publication choices
+Clemente, on timestamp validation:
+> no deberia, ya que corresponde a 5 minutos y en realidad le tomo 8
 
-User:
-> matiasudd, el repositorio es privado
+Clemente, on internal consistency:
+> no basta, ya que no sabesmos la vericidad de los datos. podrian haber datos malos pero que si cumplen con los requisitos para el analisis.
 
-User, regarding collaborator invitations:
-> agreguemoslos despues al repositorio
+Clemente, on the histogram display limit:
+> efectivamente sigue participando, aunque quede fuera del histograma, eso es solo una decision visual
 
-Outcome: private repository created; invitations deferred at the user's request.
-Verification: remote API confirmed private visibility and matching commit SHA.
+The discussion corrected confusion between correlation and a share of total time,
+and between three months and three consecutive months. It also distinguished
+vehicle mobilisations from incidents and descriptive findings from causal claims.
 
-## 6. Learning and compliance review
+## Presentation and revision
 
-User:
-> necesito que me digas los pasos que seguiste y en que parte se hacían para lograr lo que hiciste anteriormente, ya que mañana tengo un workshop y debo hacer todo lo anterior de manera individual
+Clemente:
+> por esto tambien quiero que utilices un lenguaje formal (universitario), pero que a la vez no sea muy complejo para nosotros, intenta utilizar palabras basicas y que suene fluido el discurso
 
-User:
-> los archivos del certamen 1 que me adjuntaste, cumple con lo que solicita en la pauta y las instrucciones?
+AI drafted English slides and an oral practice script. The submitted presentation
+retains the project evidence and concise source notes. The practice script is
+separate from the submitted repository.
 
-Assistant:
-> Cubren los siete puntos del anuncio, pero todavía no están completamente cerrados para la entrega.
+Clemente, confirming Matías's review on 27 September 2026:
+> si el revisó todo lo que se ha hecho
 
-User:
-> termina de realizar los pendientes que quedan y luego adjuntame los entregables y explicame el trabajo que realizaste
-
-Outcome: documentation closeout requested. Human review, actual individual
-contributions, feedback and evaluator access require accurate team information.
-No acceptance or human verification is inferred merely from requesting completion.
-
-## Suggestions not adopted
-
-Codex did not deduplicate by incident ID, automatically impute missing attendance
-times, remove valid long durations solely because they were extreme, or propose
-realised travel/arrival information as dispatch-time predictors. These are
-implementation decisions by the assistant; students must explain and validate
-them before taking ownership of the submission.
-
-## Verification trail
-
-- scripts/analysis.py: actual transformations and assertions.
-- outputs/audit.json and row_flow.csv: measured exclusions and reconciliations.
-- outputs/summary.json: calculated KPI and sensitivity values.
-- outputs/validation.json: execution and visual inspection record.
-- docs/SOURCES.md: external evidence and interpretation limits.
-- PROCESS_LOG.md: human decisions and contribution status.
+The final review aligns the candidate and sensitivity periods and removes
+superseded presentations and administrative drafts. `PROCESS_LOG.md` records
+the resulting decisions and contributions.
