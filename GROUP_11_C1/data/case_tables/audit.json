@@ -1,0 +1,37 @@
+{
+  "raw_rows": 727857,
+  "exact_duplicates_removed": 3922,
+  "conflicting_id_rows_all_years": 56,
+  "period_rows_after_exact_dedup": 384643,
+  "excluded_kpi_rows": 16,
+  "eligible_kpi_rows": 384627,
+  "distinct_incidents_in_eligible": 248225,
+  "parse_failures_all_years": {
+    "DateAndTimeMobilised": 0,
+    "DateAndTimeMobile": 0,
+    "DateAndTimeArrived": 0,
+    "DateAndTimeLeft": 0,
+    "DateAndTimeReturned": 0,
+    "CalYear": 0,
+    "HourOfCall": 0,
+    "TurnoutTimeSeconds": 0,
+    "TravelTimeSeconds": 0,
+    "AttendanceTimeSeconds": 0,
+    "PumpOrder": 0
+  },
+  "exclusion_flags_overlap": {
+    "missing_id": 0,
+    "conflicting_id": 16,
+    "missing_or_negative_attendance": 0,
+    "invalid_arrival": 0,
+    "attendance_disagrees_timestamp": 0
+  },
+  "component_inconsistent_or_missing_eligible": 1816,
+  "missing_borough_eligible": 1288,
+  "zero_attendance_eligible": 1,
+  "over_60_minutes_eligible": 0,
+  "date_min": "2023-01-01 00:00:27+00:00",
+  "date_max": "2024-12-30 23:59:59+00:00",
+  "days_without_records": 1,
+  "independent_p90_min": 9.2
+}

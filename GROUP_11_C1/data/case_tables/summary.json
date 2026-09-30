@@ -1,0 +1,12 @@
+{
+  "n": 384627.0,
+  "median_min": 5.65,
+  "p90_min": 9.2,
+  "mean_min": 6.028075685447634,
+  "p99_min": 14.45,
+  "max_min": 20.0,
+  "initial_mobilisations_n": 384627,
+  "initial_mobilisations_p90_min": 9.2,
+  "positive_only_p90_min": 9.2,
+  "known_borough_p90_min": 9.183333333333334
+}

@@ -52,7 +52,7 @@ they are extreme; using post-arrival variables as dispatch-time predictors.
 - Matias authenticated GitHub CLI as matiasudd and selected a private repository.
   He asked to defer invitations to Clemente and the instructor.
 
-## Human contribution record to complete
+## Human contribution record at initial preparation (superseded below)
 
 | Member | Actual work performed | Evidence/commit | Verification and date |
 |---|---|---|---|
@@ -65,3 +65,24 @@ No C1 feedback has been supplied in this conversation. This does not establish
 whether the team received feedback elsewhere. For each comment record the
 source, change requested, accepted/adapted/rejected decision, reason and commit.
 This record must continue into C2.
+
+## Confirmed C1 update - 29 September 2026
+
+The current submission is in GROUP_11_C1/. Earlier pending-review statements
+above describe the initial preparation, not the current confirmed status.
+Matias confirmed on behalf of both members that he reviewed row flow/P90,
+Clemente reviewed borough/hour comparisons and limitations, and both accepted
+the reflection text. No separate direct message from Clemente is inferred.
+The team adopted the scope and criteria presented in the final report.
+Matias subsequently confirmed that the instructor provided no W1 feedback.
+
+Codex assistance included technical feasibility, quality-test syntax,
+analytical code, figures and initial drafts. The final package preserves the
+team's report description and the supporting interaction/verification record.
+Simplifying code does not imply unaided student authorship.
+
+The current notebook has 17 executed code cells without saved errors.
+The current report includes the Instructor feedback and response text.
+Original/reduced inputs and processed outputs are included; the processed
+CSV is stored losslessly as gzip for GitHub. The earlier 13-slide deck and
+older notebook remain preparation history, not final delivery files.

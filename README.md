@@ -1,80 +1,39 @@
-# London Fire Brigade: mobilisation to arrival
+# London Fire Brigade C1 - Group 11
 
-Business Intelligence IIB423T-2 | C1 | 29 September 2026
+We are Matias Munoz Hoffmann and Clemente Ibarra. Our Business Intelligence
+C1 project investigates vehicle mobilisation-to-arrival times in published
+London Fire Brigade records for 2023-2024.
 
-**Team:** Matias Muñoz Hoffmann and Clemente Ibarra.
+## Our current submission
 
-**Status:** C1 preparation for team review; publication metadata is in docs/ENTREGA.md.
-The team confirmed that the London case is permitted; no additional rubric is available.
+We keep our current submission in [`GROUP_11_C1/`](GROUP_11_C1/).
+Its [README](GROUP_11_C1/README.md) describes our files, sources, dependencies,
+execution order, AI assistance, individual reviews and interpretation limits.
 
-## Decision and scope
+- [Report PDF](GROUP_11_C1/report/GROUP_11_C1_Report.pdf)
+- [Presentation PDF](GROUP_11_C1/presentation/GROUP_11_C1_Slides.pdf)
+- [Editable presentation](GROUP_11_C1/presentation/C1_LFB_English_Final.pptx)
+- [Executed notebook](GROUP_11_C1/analysis/C1_LFB.ipynb)
+- [Analysis code](GROUP_11_C1/analysis/analysis.py)
+- [Code guide](GROUP_11_C1/analysis/CODE_GUIDE.md)
+- [Data and verification evidence](GROUP_11_C1/data/)
 
-Identify boroughs and dispatch hours that merit an operational review of long
-mobilisation-to-arrival times. This is an academic diagnostic study, not an
-operational dispatch tool or an evaluation of individual firefighters.
+Our saved notebook contains 17 executed code cells with no error outputs.
+Our eligible population is 384,627 vehicle mobilisations, with median attendance
+of 5.65 minutes and P90 of 9.20 minutes. We do not interpret these as official
+first-appliance performance measures or evidence of crew quality.
 
-Source: [London Fire Brigade Mobilisation Records](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65),
-2021-2024 CSV; analysis period: dispatch timestamps in 2023-2024 (GMT as documented).
-Each row represents a vehicle mobilisation. Multiple mobilisations can belong to
-the same incident. The population covers published pumping-appliance responses,
-not only fires. No incident-type information is available in this file.
-The extract contains only Initial mobilisations, no durations above 20 minutes,
-and no records on 31 December 2024. Results concern this published population;
-December and annual 2024 totals are incomplete.
+We used Codex for technical assistance, code, figures and initial drafts.
+We adopted and reviewed the reported criteria. We describe our assistance and
+checks in the submission rather than claiming unaided authorship.
+Matias reviewed row flow and P90; Clemente reviewed borough/hour comparisons
+and limitations. We received no instructor feedback on W1.
 
-The main KPI is P90 of AttendanceTimeSeconds / 60 among eligible records.
-It starts at mobilisation, not at the emergency call. All vehicle arrivals are
-included; it is not a first-appliance response standard. See `docs/KPI.md`.
+We preserve the earlier `scripts/`, `notebooks/`, `outputs/` and `docs/` files
+as preparation history. They are not our final submission; we use the files
+inside `GROUP_11_C1/` for the current report, slides and reproducible analysis.
 
-## Deliverables
-
-- `notebooks/C1_LFB.ipynb`: executed analysis, methods, evidence and interpretation.
-- `outputs/C1_LFB.html`: portable rendered notebook.
-- `outputs/C1_LFB_reviewed.pptx`: 13-slide presentation with editable charts.
-- `outputs/figures/`: distributions, comparisons, temporal patterns and correlations.
-- `outputs/audit.json`, `row_flow.csv`, `raw_profile.csv`: quality and reconciliation.
-- `outputs/summary.json` and `*_metrics.csv`: reproducible numerical evidence.
-- `docs/CASE_BRIEF.md`, `KPI.md`, `DEFENSA_ES.md`: decision, measurement and study guide.
-- `PROCESS_LOG.md`: AI contribution, verification and outstanding human review.
-- `docs/AI_INTERACTIONS.md`: selected original prompts and relevant AI responses.
-- `docs/ENTREGA.md`: publication and Canvas checklist.
-
-## Reproduce
-
-Python 3.12 was used. From this directory, create a virtual environment, install
-`requirements.txt`, and run:
-
-```powershell
-python -m venv .venv
-.venv/Scripts/python.exe -m pip install -r requirements.txt
-.venv/Scripts/python.exe scripts/download_data.py
-.venv/Scripts/python.exe scripts/build_notebook.py
-```
-
-The build executes the notebook and regenerates tables, charts and HTML. The
-notebook can also run top-to-bottom in a Python kernel with these dependencies.
-Raw files and the processed CSV are excluded from Git. `data/source_manifest.json`
-records the exact source URLs, retrieval timestamp and SHA256 checksums. Source
-updates may change the download; retain the submitted raw snapshot separately
-and check the manifest before comparing reproduced results. The downloader fails
-on checksum drift rather than silently replacing an existing snapshot identity.
-
-## Interpretation limits
-
-Descriptive associations do not establish causality. Vehicle mix, incident type,
-distance, traffic and resource availability are not controlled. Missing geographic
-labels remain Unknown. No imputation of the target, no arbitrary outlier trimming,
-and no claim of a statutory service-level breach. Multiple rows per incident
-are not independent emergency events. The analysis does not extrapolate to Chile.
-
-## Attribution and use
-
-Contains London Fire Brigade / Greater London Authority information; source
-portal lists Open Government Licence v2. Cite the publisher and the dataset when
-reusing results. The publisher's dictionary is retained locally and exported to
-`outputs/source_dictionary.csv`. This repository does not claim ownership of
-source data. No names of victims, home addresses or credentials are required.
-
-AI-assisted preparation is disclosed in PROCESS_LOG.md. Students must understand,
-verify and accept the submission; the log does not claim that human review or an
-individual contribution has occurred when it has not.
+We maintain this repository privately. Collaborator and instructor invitations
+remain pending. Publishing here does not constitute a Canvas submission.
+We still need to package the submission folder as ZIP or RAR and upload it to
+the designated Canvas assignment, as required by the C1 brief.

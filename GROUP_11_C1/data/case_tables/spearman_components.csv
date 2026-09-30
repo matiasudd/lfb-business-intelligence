@@ -1,0 +1,4 @@
+,TurnoutTimeSeconds,TravelTimeSeconds,AttendanceTimeSeconds
+TurnoutTimeSeconds,1.0,-0.08322409859511713,0.16883572861260854
+TravelTimeSeconds,-0.08322409859511713,1.0,0.9519220479856422
+AttendanceTimeSeconds,0.16883572861260854,0.9519220479856422,1.0

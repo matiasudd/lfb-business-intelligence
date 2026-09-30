@@ -1,47 +1,22 @@
-# Checklist de entrega C1
+# Entrega C1 actualizada
 
-Fecha segun calendarizacion: martes 29 de septiembre de 2026, antes de 17:50.
-Equipo: Matias Muñoz Hoffmann y Clemente Ibarra.
+Somos Matias Munoz Hoffmann y Clemente Ibarra, grupo 11. Nuestra version vigente
+esta en `GROUP_11_C1/`, con informe PDF, presentacion PDF y editable, notebook
+ejecutado, codigo, dependencias, datos y evidencias del proceso.
 
-## Completado
+Incluimos la declaracion de ausencia de retroalimentacion de W1 en el informe.
+Registramos las revisiones del equipo y el uso de IA en los documentos del paquete.
+Conservamos los archivos anteriores del repositorio como historial de preparacion,
+no como la entrega final.
 
-- Proyecto, KPI y EDA documentados; notebook ejecutado y graficos revisados.
-- Fuentes y datos originales conservados localmente con SHA256.
-- Repositorio privado creado y primera version publicada.
-- Presentacion y guia de defensa preparadas.
-- Extractos de prompts y respuestas incorporados en docs/AI_INTERACTIONS.md.
+## Pendientes
 
-## Antes de entregar
+- Agregar a Clemente y al profesor al repositorio privado; las invitaciones fueron
+  pospuestas por indicacion de Matias.
+- Comprimir la carpeta `GROUP_11_C1/` como `GROUP_11_C1.zip` o `.rar`, con una sola
+  carpeta raiz del mismo nombre. No se ha generado un ZIP en esta actualizacion.
+- Subir ese archivo a la tarea de Canvas y comprobar la confirmacion del envio.
 
-- Revisar resultados y aceptar o corregir las propuestas del KPI y alcance.
-- Completar contribuciones reales y verificacion humana en PROCESS_LOG.md.
-- Revisar notebook ejecutado, graficos, conclusiones y presentacion.
-- Agregar a Clemente y comprobar acceso para el profesor; las invitaciones se pospusieron por indicacion del usuario.
-- No incluir datos originales grandes, entornos virtuales ni credenciales.
-- Conservar por separado el CSV original que corresponde al SHA256 del manifiesto.
-
-## GitHub
-
-Repositorio privado: https://github.com/matiasudd/lfb-business-intelligence
-
-Cuenta autenticada: matiasudd. Visibilidad elegida: privada. El usuario pidio
-agregar a Clemente y al profesor mas adelante. Antes de entregar se debe verificar
-su acceso. No compartir contrasenas o tokens en el chat.
-
-## Canvas
-
-Entregar URL del repositorio, SHA completo del commit, ambos integrantes y URL
-directa a la version: https://github.com/matiasudd/lfb-business-intelligence/tree/FULL_SHA . Sustituir con
-valores reales una vez publicado. Comprobar la accesibilidad de esa version.
-No declarar una entrega hasta que Canvas confirme el envio.
-
-El archivo de texto que acompana al paquete local identifica el SHA de esa
-version. Ese archivo no prueba que exista un envio en Canvas. Si se hacen cambios
-posteriores, actualizar el SHA y el enlace antes de enviar.
-
-Los commits posteriores no cambian la version evaluada. No reescribir ni borrar
-el historial enviado hasta terminar evaluacion y revision.
-
-Fuente: Calendarization_2026_Third_Term_Business_Intelligence_IIB423T.docx,
-secciones 6-8, y anuncio del profesor adjuntado por Matias en esta conversacion.
-El anuncio enumera siete tareas y no proporciona una rubrica con puntajes.
+El enlace al repositorio y el commit sirven como referencia de version; no
+reemplazan el archivo exigido para Canvas. No afirmamos que la entrega se haya
+enviado. El respaldo es la rubrica C1 suministrada por el equipo, paginas 4-5.
