@@ -133,10 +133,13 @@ def run():
     # Proposed review rule: >=100 observations, above contemporaneous global p90,
     # for >=3 consecutive months. This is a heuristic, not an LFB service target.
     bm = summaries['borough_month'].merge(summaries['monthly'][['month','p90_min']],on='month',suffixes=('','_global'))
+    # Use the same complete-month window for the main rule and sensitivity analysis.
+    review_months = pd.period_range('2023-01', '2024-11', freq='M').astype(str)
+    bm = bm[bm.month.isin(review_months)].copy()
     bm['candidate_month'] = (bm.n >= 100) & (bm.p90_min > bm.p90_min_global) & bm.borough.ne('Unknown')
     review = []
     for borough, rows in bm.groupby('borough'):
-        sequence = rows.set_index('month').candidate_month.reindex(pd.period_range('2023-01','2024-12',freq='M').astype(str),fill_value=False)
+        sequence = rows.set_index('month').candidate_month.reindex(review_months,fill_value=False)
         longest = current = 0
         for value in sequence:
             current = current+1 if value else 0
@@ -144,7 +147,7 @@ def run():
         review.append({'borough':borough,'longest_consecutive_months':longest,'review_candidate':longest>=3})
     pd.DataFrame(review).to_csv(OUT / 'review_candidates.csv',index=False)
     sensitivity=[]
-    complete_months = sorted(bm.month.unique())[:-1]
+    complete_months = list(review_months)
     for n_min in [50,100,200]:
         for months_min in [3,6]:
             count=0

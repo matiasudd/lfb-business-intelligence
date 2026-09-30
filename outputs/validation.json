@@ -2,7 +2,6 @@
   "notebook_executed": true,
   "format_valid": true,
   "error_outputs": 0,
-  "visual_review": "Completed: nine figure PNGs, rendered notebook summary and takeaways, 13 rendered final slides. HTML: nine images, zero broken. PowerPoint desktop opening not tested.",
   "versions": {
     "pandas": "3.0.1",
     "numpy": "2.3.5",

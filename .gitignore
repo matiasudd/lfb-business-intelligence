@@ -12,3 +12,6 @@ __pycache__/
 outputs/*.validation.json
 .chart-data-*/
 outputs/C1_LFB.pptx
+.presentation-build/
+presentation_c1/
+.c1-review/
