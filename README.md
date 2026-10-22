@@ -1,4 +1,57 @@
-# London Fire Brigade C1 - Group 11
+# London Fire Brigade BI — Group 11
+
+## Workshop 2 delivery (C1 continuation)
+
+**Authors:** Matías Muñoz Hoffmann and Clemente Ibarra. The executable English
+notebook is [`notebooks/W2_project.ipynb`](notebooks/W2_project.ipynb). Its
+source builder is [`scripts/build_w2_notebook.py`](scripts/build_w2_notebook.py),
+and its CSV evidence is in [`outputs/w2/`](outputs/w2/). The original C1
+submission in `GROUP_11_C1/` remains unchanged.
+
+The C1 question—where and when published London Fire Brigade vehicle
+mobilisations have longer mobilisation-to-arrival times—continues. Following
+the team's report of the instructor's C1 comment, W2 replaces P90 as the
+primary KPI with the **share of eligible mobilisations above 10 minutes**:
+`100 × count(AttendanceTimeSeconds > 600) / eligible mobilisations`. P90 and
+the median are supporting measures. The threshold is an exploratory team
+choice, **not an official LFB service target**. In the retained published
+2023–2024 case, the KPI is 26,172 / 384,627 = **6.805%**.
+
+To reproduce from this repository root, install `requirements.txt` and run:
+
+```powershell
+python scripts/build_w2_notebook.py
+python -m jupyter nbconvert --to notebook --execute --inplace notebooks/W2_project.ipynb --ExecutePreprocessor.timeout=600
+python scripts/verify_w2.py
+```
+
+The notebook reads `GROUP_11_C1/data/case_tables/mobilisations_2023_2024_clean.csv.gz`
+and C1's saved audit. It recreates validation, figures, a fixed-seed 25%
+sample, a leakage audit, and chronological train/validation/test subsets.
+The generated tables in `outputs/w2/` are audit evidence, not additional raw
+sources. The output has been executed locally with `requirements.txt`.
+
+The available source lacks 31 December 2024 and has no recorded duration
+above 20 minutes. `Unknown` geography stays in the overall denominator:
+1,288 such rows have a 44.95% over-10-minute rate. Geographic contrasts are
+descriptive, unadjusted, and cannot establish causes. C1 inspected the full
+dataset before W2, so W2's chronological test is a retrospective robustness
+check rather than a pristine predictive evaluation. No model is trained.
+
+The notebook includes the required feedback-to-action table, variable
+dictionary, target/observed/analytical populations, chart interpretations,
+sample comparison, split counts and overlap check, train-only preprocessing,
+management summary, source links and AI-use disclosure. The reported C1
+instructor comment is second-hand; no written C1 feedback was supplied here.
+Whether the separately submitted W1 used this same source remains unverified.
+
+**Repository:** https://github.com/matiasudd/lfb-business-intelligence
+**W2 version tag:** `w2-2026-10-22` (created locally with the finished W2 commit).
+The local W2 files need to be pushed to that repository before using the URL
+as proof of W2 submission. This README does not claim that a GitHub push or
+course-platform submission has occurred.
+
+## Historical C1 delivery
 
 We are Matias Munoz Hoffmann and Clemente Ibarra. We investigate vehicle
 mobilisation-to-arrival times in published London Fire Brigade records for

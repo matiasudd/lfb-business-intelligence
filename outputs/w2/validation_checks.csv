@@ -1,0 +1,9 @@
+check,affected_rows,interpretation,action
+Nonmissing unique mobilisation IDs,0,pass if zero,Stop on failure; revisit C1 conflict resolution
+Nonmissing incident IDs,0,pass if zero,Stop on failure; grouping needs this key
+Dispatch and arrival time logic (<=1 s difference),0,pass if zero,Stop on failure; exclude only with explicit audit
+Nonnegative recorded duration,0,pass if zero,Stop on failure; outcome invalid
+Dispatch time within 2023-2024 UTC,0,pass if zero,Stop on failure; correct scope
+Missing borough label,1288,coverage flag,Retain as Unknown globally; exclude from named-borough ranking
+Complete but inconsistent time components,0,component flag,Retain valid total; omit components from component-only analysis
+Duration above 20 min in published extract,0,coverage flag,Do not infer that unobserved long responses never occur
