@@ -20,24 +20,24 @@ md("""
 **Business Intelligence · Group 11 · Matías Muñoz Hoffmann and Clemente Ibarra**
 
 ## tl;dr
-We continue the C1 question: which boroughs and dispatch hours warrant closer investigation of longer published vehicle mobilisation-to-arrival times? Following the team's report of the instructor's C1 feedback, the **primary KPI is now the share of eligible mobilisations lasting more than 10 minutes**; P90 remains a supporting distribution measure. In the retained 2023–2024 source snapshot, 26,172 of 384,627 eligible mobilisations (6.81%) exceed 10 minutes. This threshold is an **exploratory team choice, not an LFB service standard**. W2 adds reproducible data checks, a 25% sample, a contextual leakage audit, and chronological train/validation/test subsets. The test subset is a retrospective robustness check, not a credible estimate of unseen predictive performance: W1/C1 already inspected the full source.
+We continue the C1 question: which boroughs and dispatch hours warrant closer investigation of longer published vehicle mobilisation-to-arrival times? Following the team's clarification of the instructor's C1 feedback, the **primary KPI is now the share of eligible mobilisations lasting at least 10 minutes**; P90 remains a supporting distribution measure. C1's P90 was 9.2 minutes, which informed the choice of a fixed 10-minute cutoff. In the retained 2023–2024 source snapshot, 26,367 of 384,627 eligible mobilisations (6.86%) last at least 10 minutes. This threshold is an **exploratory team choice, not an LFB service standard**. W2 adds reproducible data checks, a 25% sample, a contextual leakage audit, and chronological train/validation/test subsets. The test subset is a retrospective robustness check, not a credible estimate of unseen predictive performance: W1/C1 already inspected the full source.
 
 ## Context & Methods
 **Proposed decision owner:** an LFB operations-planning analyst. **Proposed decision:** select places and periods for contextual review; do not change staffing or dispatch rules from these summaries alone. **Observation unit:** one published vehicle mobilisation, not one incident. **Decision/prediction time for the leakage audit:** immediately when a vehicle is mobilised. No model is fitted in W2.
 
-**Objective:** identify segments with a higher frequency of longer observed mobilisation-to-arrival times. **Primary KPI:** `100 × count(AttendanceTimeSeconds > 600) / count(eligible mobilisations)` within the stated period/segment. The numerator and denominator use the same C1 eligibility rules. Higher values identify questions for review, not poor performance or a causal effect. Ten minutes is fixed before the W2 sample and split; it was selected after C1's whole-data EDA and is not an independently validated operational threshold. Report eligible `n`, median and P90 beside the KPI.
+**Objective:** reduce the share of published eligible vehicle mobilisations with a mobilisation-to-arrival time of at least 10 minutes, and identify segments for contextual review. **Primary KPI:** `100 × count(AttendanceTimeSeconds >= 600) / count(eligible mobilisations)` within the stated period/segment. The numerator and denominator use the same C1 eligibility rules. Exactly 600 seconds is included. Higher segment values identify questions for review, not poor performance or a causal effect. The C1 P90 was 552 seconds (9.2 minutes); the team used that upper-tail observation to choose the fixed, round 600-second threshold. The threshold remains 600 seconds when future P90 values change. It is not an independently validated operational standard. Report eligible `n`, median and P90 beside the KPI.
 
 **Source:** [official LFB mobilisation catalogue](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65); local source snapshot retrieved 23 September 2026, as recorded in `GROUP_11_C1/data/source_manifest.json`. C1's executed `GROUP_11_C1/analysis/C1_LFB.ipynb`, audit and cleaned case are retained. [LFB's published attendance methodology](https://www.london-fire.gov.uk/media/8863/foia84201-response-times-of-fire-brigades-and-data-collation-response.pdf) uses further first/second-appliance and exclusion rules; our KPI is not that official measure.
 
 ### Feedback to action
 | Source | Issue | Correction and changed conclusion | Notebook evidence |
 |---|---|---|---|
-| C1 instructor comment, as reported by the team on 22 October 2026 | The presented P90 was challenged as the primary KPI. | Replace it with the explicit proportion above 10 minutes. Keep P90 as context; do not call the new threshold official. The C1 claim that Hillingdon has a high P90 becomes a question about its higher observed **share** over 10 minutes. | KPI calculation, borough comparison, management summary |
+| C1 instructor comment, clarified by the team | A percentile changes when the distribution improves, so using the current P90 as a moving cutoff would also move the KPI threshold. | Fix the cutoff at 600 seconds (10 minutes), informed by C1's 552-second P90; measure the proportion **at or above** it. Keep P90 as context. The C1 claim that Hillingdon has a high P90 becomes a question about its observed share at or above the fixed threshold. | KPI calculation, exact-boundary check, borough comparison, management summary |
 | Self-audit of C1 coverage | 31 December 2024 has no records. | Do not insert a zero. Mark December 2024 partial and exclude it from complete-month trend comparisons; retain all published rows in the period-wide KPI. | Coverage checks, monthly figure |
 | Self-audit of C1 geography | Missing borough labels remain in eligible records. | Keep `Unknown` in the global denominator, show it separately, and omit it from named-borough ranking. No imputation. | Validation checks, borough figure |
 | Self-audit of W1/C1 exploration | The whole source informed earlier choices. | Treat the chronological test subset as an independent calculation after the W2 protocol is fixed, **not** as a pristine unseen prediction benchmark. | Sampling, leakage audit, holdout section |
 
-**Change to the C1 conclusion:** P90 differences still describe the tail, but the primary W2 comparison is the fraction of published eligible mobilisations above 10 minutes. Geographic/hourly contrasts remain unadjusted. No conclusion about causes, crew quality or resource changes follows.
+**Change to the C1 conclusion:** P90 differences still describe the tail, but the primary W2 comparison is the fraction of published eligible mobilisations at least 10 minutes. Geographic/hourly contrasts remain unadjusted. No conclusion about causes, crew quality or resource changes follows.
 """)
 
 md("""
@@ -51,7 +51,7 @@ md("""
 | `AttendanceTimeSeconds` | Recorded mobilisation-to-arrival seconds | Nonnegative and within 1 second of timestamp difference for eligible rows; not available at dispatch. |
 | `BoroughName` | Published geographic label; absent from the older metadata workbook | Missing means unrecorded geography, represented as `Unknown`, never assigned a borough. Availability at dispatch is unverified. |
 | `hour_gmt` | Derived dispatch hour | Integer 0–23; known at decision time. |
-| `late_over_10m` | W2 outcome indicator | `AttendanceTimeSeconds > 600`; 0 or 1, unavailable at dispatch. |
+| `at_least_10m` | W2 outcome indicator | `AttendanceTimeSeconds >= 600`; 0 or 1, unavailable at dispatch. |
 | `TurnoutTimeSeconds`, `TravelTimeSeconds` | Post-dispatch components | Can be missing/inconsistent without invalidating a coherent total; prohibited as dispatch-time predictors. |
 
 The *target population* for possible operational planning is all relevant LFB fire-engine mobilisations in 2023–2024. The *observed population* is the publisher's 2021–2024 file as downloaded on 23 September 2026 and restricted to 2023–2024 dispatches. The *analytical population* is the C1 eligible subset after exact-copy removal and exclusion of unresolved mobilisation IDs. Published data may omit or filter long/non-initial records, and the final day of 2024 is missing. These are coverage risks that a random sample or train/test split cannot repair. Repeated vehicles within an incident also mean rows are not independent emergencies.
@@ -89,11 +89,11 @@ case['month'] = case['DateAndTimeMobilised'].dt.strftime('%Y-%m')
 case['year'] = case['DateAndTimeMobilised'].dt.year
 case['hour_gmt'] = case['DateAndTimeMobilised'].dt.hour
 case['attendance_min'] = case['AttendanceTimeSeconds'] / 60
-case['late_over_10m'] = case['AttendanceTimeSeconds'].gt(THRESHOLD_SECONDS)
+case['at_least_10m'] = case['AttendanceTimeSeconds'].ge(THRESHOLD_SECONDS)
 assert len(case) == audit['eligible_kpi_rows'] == 384627
 print(f'Eligible case rows: {len(case):,}; source snapshot: 23 September 2026; fixed seed: {SEED}')
 display(case[['ResourceMobilisationId','IncidentNumber','DateAndTimeMobilised','borough',
-              'AttendanceTimeSeconds','late_over_10m']].head(3))
+              'AttendanceTimeSeconds','at_least_10m']].head(3))
 """)
 
 md("""
@@ -147,17 +147,22 @@ The missing final day and the 20-minute observed ceiling are source-coverage sig
 
 code("""
 def describe_rate(frame):
-    return pd.Series({'eligible_n':len(frame), 'over_10m_n':int(frame.late_over_10m.sum()),
-                      'over_10m_pct':100*frame.late_over_10m.mean(),
+    return pd.Series({'eligible_n':len(frame), 'at_least_10m_n':int(frame.at_least_10m.sum()),
+                      'at_least_10m_pct':100*frame.at_least_10m.mean(),
                       'median_min':frame.attendance_min.median(),
                       'p90_min':frame.attendance_min.quantile(.9)})
 
 overall = describe_rate(case)
-assert int(overall.over_10m_n) == 26172
-assert abs(overall.over_10m_pct-6.804515) < .001
+assert int(overall.at_least_10m_n) == 26367
+assert abs(overall.at_least_10m_pct-6.855213) < .001
 print('Revised KPI and supporting measures (all eligible published 2023-2024 rows):')
 display(overall.to_frame('value').round(3))
-print('KPI numerator and denominator:',int(overall.over_10m_n),'/',int(overall.eligible_n))
+print('KPI numerator and denominator:',int(overall.at_least_10m_n),'/',int(overall.eligible_n))
+exactly_ten = int(case.AttendanceTimeSeconds.eq(THRESHOLD_SECONDS).sum())
+assert exactly_ten == 195
+assert int(case.AttendanceTimeSeconds.gt(THRESHOLD_SECONDS).sum()) + exactly_ten == int(overall.at_least_10m_n)
+assert case.AttendanceTimeSeconds.quantile(.9) == 552
+print(f'Exactly 600 seconds, included in KPI: {exactly_ten:,}; C1 P90: 552 seconds (9.2 minutes).')
 """)
 
 md("""
@@ -170,7 +175,7 @@ plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':
 p99 = case.attendance_min.quantile(.99)
 fig, ax = plt.subplots(figsize=(9,4.5))
 ax.hist(case.loc[case.attendance_min.le(p99),'attendance_min'],bins=55,color='#287c8e',edgecolor='white',linewidth=.3)
-ax.axvline(10,color='#ad4932',linestyle='--',linewidth=2,label='Exploratory threshold: >10 min')
+ax.axvline(10,color='#ad4932',linestyle='--',linewidth=2,label='Fixed exploratory threshold: ≥10 min')
 ax.set(title=f'Published mobilisation-to-arrival times, 2023–2024 (n={len(case):,})',
        xlabel=f'Minutes; display through P99={p99:.2f}, all rows retained in KPI',ylabel='Mobilisations')
 ax.legend(); fig.tight_layout(); plt.show()
@@ -182,23 +187,23 @@ Compare the rate and eligible count for named boroughs. `Unknown` is visible in 
 """)
 
 code("""
-borough = case.groupby('borough',dropna=False).agg(eligible_n=('late_over_10m','size'),
-            over_10m_n=('late_over_10m','sum'),over_10m_pct=('late_over_10m',lambda x:100*x.mean()),
+borough = case.groupby('borough',dropna=False).agg(eligible_n=('at_least_10m','size'),
+            at_least_10m_n=('at_least_10m','sum'),at_least_10m_pct=('at_least_10m',lambda x:100*x.mean()),
             median_min=('attendance_min','median'),p90_min=('attendance_min',lambda x:x.quantile(.9))).reset_index()
 borough.to_csv(out/'borough_kpi.csv',index=False)
 display(borough[borough.borough.isin(['HILLINGDON','LAMBETH','Unknown'])].round(2))
 known = case[case.borough.ne('Unknown')]
-print(f'Known-borough-only sensitivity: {known.late_over_10m.sum():,}/{len(known):,} = '
-      f'{100*known.late_over_10m.mean():.3f}% (all eligible: {overall.over_10m_pct:.3f}%).')
+print(f'Known-borough-only sensitivity: {known.at_least_10m.sum():,}/{len(known):,} = '
+      f'{100*known.at_least_10m.mean():.3f}% (all eligible: {overall.at_least_10m_pct:.3f}%).')
 named = borough[borough.borough.ne('Unknown') & borough.eligible_n.ge(1000)]
-top = named.nlargest(10,'over_10m_pct').sort_values('over_10m_pct')
+top = named.nlargest(10,'at_least_10m_pct').sort_values('at_least_10m_pct')
 fig,ax=plt.subplots(figsize=(9,5.3))
-ax.barh(top.borough,top.over_10m_pct,color='#287c8e')
-ax.axvline(overall.over_10m_pct,color='#ad4932',linestyle='--',label=f'All eligible: {overall.over_10m_pct:.2f}%')
-ax.set(title='Largest observed shares over 10 minutes, named boroughs (2023–2024)',
-       xlabel='Mobilisations over 10 minutes (% of eligible borough rows)',ylabel='Published borough label')
-ax.set_xlim(0,top.over_10m_pct.max()*1.23)
-for i,row in enumerate(top.itertuples()): ax.text(row.over_10m_pct+.1,i,f'n={row.eligible_n:,}',va='center',fontsize=9)
+ax.barh(top.borough,top.at_least_10m_pct,color='#287c8e')
+ax.axvline(overall.at_least_10m_pct,color='#ad4932',linestyle='--',label=f'All eligible: {overall.at_least_10m_pct:.2f}%')
+ax.set(title='Largest shares of mobilisations lasting at least 10 minutes, named boroughs',
+       xlabel='Mobilisations lasting at least 10 minutes (% of eligible borough rows)',ylabel='Published borough label')
+ax.set_xlim(0,top.at_least_10m_pct.max()*1.23)
+for i,row in enumerate(top.itertuples()): ax.text(row.at_least_10m_pct+.1,i,f'n={row.eligible_n:,}',va='center',fontsize=9)
 ax.legend(loc='lower right'); fig.tight_layout(); plt.show()
 """)
 
@@ -208,14 +213,14 @@ The period-wide KPI above includes available December 2024 records. This trend o
 """)
 
 code("""
-monthly=case.groupby('month').late_over_10m.agg(eligible_n='size',over_10m_n='sum',over_10m_pct=lambda x:100*x.mean()).reset_index()
+monthly=case.groupby('month').at_least_10m.agg(eligible_n='size',at_least_10m_n='sum',at_least_10m_pct=lambda x:100*x.mean()).reset_index()
 monthly.to_csv(out/'monthly_kpi.csv',index=False)
 complete_months=monthly[monthly.month.ne('2024-12')].copy()
 fig,ax=plt.subplots(figsize=(10,4.5))
-ax.plot(complete_months.month,complete_months.over_10m_pct,color='#287c8e',marker='o',markersize=3)
-ax.axhline(overall.over_10m_pct,color='#ad4932',linestyle='--',label='Full observed-period rate (includes partial Dec 2024)')
-ax.set(title='Share over 10 minutes by complete calendar month, Jan 2023–Nov 2024',
-       xlabel='Dispatch month, GMT',ylabel='Over 10 minutes (% of eligible rows)')
+ax.plot(complete_months.month,complete_months.at_least_10m_pct,color='#287c8e',marker='o',markersize=3)
+ax.axhline(overall.at_least_10m_pct,color='#ad4932',linestyle='--',label='Full observed-period rate (includes partial Dec 2024)')
+ax.set(title='Share lasting at least 10 minutes by complete month, Jan 2023–Nov 2024',
+       xlabel='Dispatch month, GMT',ylabel='At least 10 minutes (% of eligible rows)')
 ax.set_xticks(range(0,len(complete_months),3),complete_months.month.iloc[::3],rotation=45,ha='right')
 ax.legend(fontsize=8); fig.tight_layout(); plt.show()
 """)
@@ -226,19 +231,19 @@ Each hourly rate pools the available 2023–2024 dispatch dates. Hour labels are
 """)
 
 code("""
-hourly=case.groupby('hour_gmt').late_over_10m.agg(eligible_n='size',over_10m_n='sum',over_10m_pct=lambda x:100*x.mean()).reset_index()
+hourly=case.groupby('hour_gmt').at_least_10m.agg(eligible_n='size',at_least_10m_n='sum',at_least_10m_pct=lambda x:100*x.mean()).reset_index()
 hourly.to_csv(out/'hour_kpi.csv',index=False)
 fig,ax=plt.subplots(figsize=(10,4.5))
-ax.bar(hourly.hour_gmt,hourly.over_10m_pct,color='#287c8e')
-ax.axhline(overall.over_10m_pct,color='#ad4932',linestyle='--',label='All eligible rows')
-ax.set(title='Share over 10 minutes by dispatch hour, 2023–2024',xlabel='Dispatch hour (GMT)',
-       ylabel='Over 10 minutes (% of eligible hour rows)',xticks=range(0,24,2))
+ax.bar(hourly.hour_gmt,hourly.at_least_10m_pct,color='#287c8e')
+ax.axhline(overall.at_least_10m_pct,color='#ad4932',linestyle='--',label='All eligible rows')
+ax.set(title='Share lasting at least 10 minutes by dispatch hour, 2023–2024',xlabel='Dispatch hour (GMT)',
+       ylabel='At least 10 minutes (% of eligible hour rows)',xticks=range(0,24,2))
 ax.legend(); fig.tight_layout(); plt.show()
-display(hourly.nlargest(3,'over_10m_pct').round(2))
+display(hourly.nlargest(3,'at_least_10m_pct').round(2))
 """)
 
 md("""
-**Interpretation of the revised EDA.** The new percentage gives the numerator and denominator behind each comparison, while the median and P90 still describe distribution shape. The 1,288 `Unknown`-borough rows have an unusually high over-10-minute share (44.95%); excluding them reduces the overall rate from 6.805% to about 6.676%. This is a material geographic missingness warning, so do not treat named-borough comparisons as complete coverage. Hillingdon is an example for contextual review, not a service-quality ranking. Differences can arise from distance, incident type, deployment location and other unmeasured factors. No causal claim follows from these figures. The historical source also has an absent day and no observed duration above 20 minutes.
+**Interpretation of the revised EDA.** The new percentage gives the numerator and denominator behind each comparison, while the median and P90 still describe distribution shape. The 1,288 `Unknown`-borough rows have an unusually high at-least-10-minute share (45.03%); excluding them reduces the overall rate from 6.855% to about 6.727%. This is a material geographic missingness warning, so do not treat named-borough comparisons as complete coverage. Hillingdon is an example for contextual review, not a service-quality ranking. Differences can arise from distance, incident type, deployment location and other unmeasured factors. No causal claim follows from these figures. The historical source also has an absent day and no observed duration above 20 minutes.
 
 ## Sampling and representativeness
 We draw approximately one quarter of the eligible published rows with a fixed seed **only to demonstrate sampling**. We compare the KPI and the share of Hillingdon and Unknown rows with the complete observed analytical case. Agreement would show that the subsample resembles this file on these measures; it would not establish that the file represents all real LFB mobilisations. Coverage/selection bias and missing geography remain.
@@ -249,11 +254,11 @@ rng=np.random.default_rng(SEED)
 sample_indices=rng.choice(len(case),size=round(len(case)*.25),replace=False)
 sample=case.iloc[np.sort(sample_indices)].copy()
 def sample_view(frame):
-    return pd.Series({'n':len(frame),'over_10m_pct':100*frame.late_over_10m.mean(),
+    return pd.Series({'n':len(frame),'at_least_10m_pct':100*frame.at_least_10m.mean(),
                       'hillingdon_share_pct':100*frame.borough.eq('HILLINGDON').mean(),
                       'unknown_share_pct':100*frame.borough.eq('Unknown').mean()})
 sample_comparison=pd.concat({'Full observed case':sample_view(case),'25% random sample':sample_view(sample)},axis=1).T
-sample_comparison['KPI difference vs full (pp)']=sample_comparison.over_10m_pct-sample_comparison.loc['Full observed case','over_10m_pct']
+sample_comparison['KPI difference vs full (pp)']=sample_comparison.at_least_10m_pct-sample_comparison.loc['Full observed case','at_least_10m_pct']
 sample_comparison.to_csv(out/'sample_comparison.csv')
 display(sample_comparison.round(3))
 print('This is population sampling inside the available file, not the train/test split below.')
@@ -261,12 +266,12 @@ print('This is population sampling inside the available file, not the train/test
 
 md("""
 ## Leakage audit
-The hypothetical prediction would occur **at the instant of mobilisation**. The target is whether the recorded duration later exceeds 600 seconds. The table uses fields and process knowledge from the actual C1 case; `uncertain` is not silently treated as available. Training/validation/test boundaries are verified in the following section.
+The hypothetical prediction would occur **at the instant of mobilisation**. The target is whether the recorded duration later reaches or exceeds 600 seconds. The table uses fields and process knowledge from the actual C1 case; `uncertain` is not silently treated as available. Training/validation/test boundaries are verified in the following section.
 """)
 
 code("""
 leakage=pd.DataFrame([
- {'risk':'Outcome and target-derived values','status':'present in source','evidence':'AttendanceTimeSeconds, attendance_min and late_over_10m are calculated after arrival','consequence':'Near-perfect target leakage','mitigation':'Outcome is evaluation target only; never a dispatch-time feature'},
+ {'risk':'Outcome and target-derived values','status':'present in source','evidence':'AttendanceTimeSeconds, attendance_min and at_least_10m are calculated after arrival','consequence':'Near-perfect target leakage','mitigation':'Outcome is evaluation target only; never a dispatch-time feature'},
  {'risk':'Future timestamps and duration components','status':'present in source','evidence':'DateAndTimeArrived, TurnoutTimeSeconds, TravelTimeSeconds and delay codes are post-dispatch','consequence':'Future information enters predictors','mitigation':'Exclude from any dispatch-time feature set'},
  {'risk':'Several vehicles for one incident','status':'present','evidence':f'{len(case):,} mobilisations versus {case.IncidentNumber.nunique():,} incident IDs','consequence':'Related incidents can cross partitions and inflate apparent generalisation','mitigation':'Verify IncidentNumber sets are disjoint across chronological partitions'},
  {'risk':'Borough label available at dispatch','status':'uncertain','evidence':'BoroughName is a published label; metadata does not establish decision-time availability','consequence':'Potential after-event location leakage','mitigation':'Exclude from hypothetical dispatch features until operational timing is verified'},
@@ -328,21 +333,21 @@ Only now inspect the outcome rates across the predeclared periods. This is **not
 """)
 
 code("""
-holdout=pd.DataFrame([{'split':name,'eligible_n':len(part),'over_10m_n':int(part.late_over_10m.sum()),
-                      'over_10m_pct':100*part.late_over_10m.mean(),
+holdout=pd.DataFrame([{'split':name,'eligible_n':len(part),'at_least_10m_n':int(part.at_least_10m.sum()),
+                      'at_least_10m_pct':100*part.at_least_10m.mean(),
                       'hillingdon_share_pct':100*part.borough.eq('HILLINGDON').mean()}
                      for name,part in partition.items()])
 holdout.to_csv(out/'holdout_kpi.csv',index=False)
 display(holdout.round(3))
 test_complete_months=test_df[test_df.DateAndTimeMobilised.lt(pd.Timestamp('2024-12-01',tz='UTC'))]
 print(f'Test July–November 2024 (complete calendar months): n={len(test_complete_months):,}, '
-      f'over-10-min rate={100*test_complete_months.late_over_10m.mean():.3f}%; '
-      f'test including partial December: {100*test_df.late_over_10m.mean():.3f}%')
+      f'at-least-10-min rate={100*test_complete_months.at_least_10m.mean():.3f}%; '
+      f'test including partial December: {100*test_df.at_least_10m.mean():.3f}%')
 """)
 
 md("""
 ## Takeaways and management summary
-**Managerial summary (120–180 words).** We continued the C1 investigation of published London Fire Brigade vehicle mobilisation-to-arrival times, while replacing its primary P90 measure after the instructor's reported feedback. The revised KPI is the percentage of eligible mobilisations lasting more than ten minutes. It is 6.81% across 384,627 observed 2023–2024 records; P90 and the median remain supporting summaries. Borough and dispatch-hour differences identify where an analyst might investigate, but do not establish their causes or justify resource changes. Validation reconfirmed unique mobilisation IDs, nonnegative and timestamp-consistent durations, and the C1 row flow. The 1,288 rows without a borough label have a 44.95% over-ten-minute rate and remain in the total. A fixed-seed quarter-sample resembles the available file on selected comparisons, but cannot repair publication and coverage bias. Chronological train, validation and test subsets have no incident overlap. The test is a retrospective robustness calculation, since C1 already examined the full dataset. Next, verify field availability at dispatch and obtain later, untouched records before predictive evaluation or operational recommendations.
+**Managerial summary (120–180 words).** We continued the C1 investigation of published London Fire Brigade vehicle mobilisation-to-arrival times. Following instructor feedback, the primary KPI now uses a fixed threshold: the percentage of eligible mobilisations lasting at least ten minutes. C1's 9.2-minute P90 informed that choice but will not move the cutoff as the distribution changes. The KPI is 6.86% across 384,627 observed 2023–2024 records; P90 and the median remain supporting summaries. Borough and dispatch-hour differences identify questions for investigation, not causes or grounds for resource changes. Validation reconfirmed unique mobilisation IDs, nonnegative and timestamp-consistent durations, and the C1 row flow. The 1,288 rows without a borough label have a 45.03% rate and remain in the total. A fixed-seed quarter-sample resembles the available file on selected comparisons but cannot repair coverage bias. Chronological train, validation and test subsets have no incident overlap. The test is retrospective robustness evidence, since C1 examined the full dataset. Next, verify field availability at dispatch and obtain later, untouched records before predictive evaluation or operational recommendations.
 
 **AI-use disclosure.** OpenAI Codex assisted with the KPI reformulation, notebook code, quality checks and explanatory draft. The team must inspect and defend the calculations, assumptions and interpretations. This file does not claim independent instructor approval or that the ten-minute threshold is an official standard.
 """)

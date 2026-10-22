@@ -10,12 +10,15 @@ submission in `GROUP_11_C1/` remains unchanged.
 
 The C1 question—where and when published London Fire Brigade vehicle
 mobilisations have longer mobilisation-to-arrival times—continues. Following
-the team's report of the instructor's C1 comment, W2 replaces P90 as the
-primary KPI with the **share of eligible mobilisations above 10 minutes**:
-`100 × count(AttendanceTimeSeconds > 600) / eligible mobilisations`. P90 and
-the median are supporting measures. The threshold is an exploratory team
-choice, **not an official LFB service target**. In the retained published
-2023–2024 case, the KPI is 26,172 / 384,627 = **6.805%**.
+the team's clarification of the instructor's C1 comment, W2 replaces P90 as
+the primary KPI with the **share of eligible mobilisations lasting 10 minutes
+or more**: `100 × count(AttendanceTimeSeconds >= 600) / eligible mobilisations`.
+Exactly 600 seconds is included. C1's P90 was 552 seconds (9.2 minutes),
+which informed the choice of a fixed, round 600-second cutoff. Unlike a
+moving P90 cutoff, it stays at 600 seconds when response times change. P90
+and the median remain supporting measures. The threshold is an exploratory
+team choice, **not an official LFB service target**. In the retained published
+2023–2024 case, the KPI is 26,367 / 384,627 = **6.855%**.
 
 To reproduce from this repository root, install `requirements.txt` and run:
 
@@ -33,7 +36,7 @@ sources. The output has been executed locally with `requirements.txt`.
 
 The available source lacks 31 December 2024 and has no recorded duration
 above 20 minutes. `Unknown` geography stays in the overall denominator:
-1,288 such rows have a 44.95% over-10-minute rate. Geographic contrasts are
+1,288 such rows have a 45.03% at-least-10-minute rate. Geographic contrasts are
 descriptive, unadjusted, and cannot establish causes. C1 inspected the full
 dataset before W2, so W2's chronological test is a retrospective robustness
 check rather than a pristine predictive evaluation. No model is trained.

@@ -1,5 +1,5 @@
 risk,status,evidence,consequence,mitigation
-Outcome and target-derived values,present in source,"AttendanceTimeSeconds, attendance_min and late_over_10m are calculated after arrival",Near-perfect target leakage,Outcome is evaluation target only; never a dispatch-time feature
+Outcome and target-derived values,present in source,"AttendanceTimeSeconds, attendance_min and at_least_10m are calculated after arrival",Near-perfect target leakage,Outcome is evaluation target only; never a dispatch-time feature
 Future timestamps and duration components,present in source,"DateAndTimeArrived, TurnoutTimeSeconds, TravelTimeSeconds and delay codes are post-dispatch",Future information enters predictors,Exclude from any dispatch-time feature set
 Several vehicles for one incident,present,"384,627 mobilisations versus 248,225 incident IDs",Related incidents can cross partitions and inflate apparent generalisation,Verify IncidentNumber sets are disjoint across chronological partitions
 Borough label available at dispatch,uncertain,BoroughName is a published label; metadata does not establish decision-time availability,Potential after-event location leakage,Exclude from hypothetical dispatch features until operational timing is verified

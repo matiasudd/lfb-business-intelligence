@@ -29,7 +29,7 @@ checks = pd.read_csv(root / "outputs/w2/validation_checks.csv")
 assert (checks.iloc[:5].affected_rows == 0).all()
 holdout = pd.read_csv(root / "outputs/w2/holdout_kpi.csv")
 assert holdout.eligible_n.sum() == 384627
-assert holdout.over_10m_n.sum() == 26172
+assert holdout.at_least_10m_n.sum() == 26367
 assert len(holdout) == 3
 
 print(f"Verified: {len(code_cells)} executed code cells, {len(images)} figures, "
