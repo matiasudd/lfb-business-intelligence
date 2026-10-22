@@ -48,6 +48,11 @@ management summary, source links and AI-use disclosure. The reported C1
 instructor comment is second-hand; no written C1 feedback was supplied here.
 Whether the separately submitted W1 used this same source remains unverified.
 
+**AI-use statement for W2:** The team chose the dataset and defined the fixed
+ten-minute KPI after the instructor's feedback. OpenAI Codex supported Python
+coding, validation checks, and the wording of explanations. The team remains
+responsible for reviewing the results and defending its choices at the workshop.
+
 **Repository:** https://github.com/matiasudd/lfb-business-intelligence
 **W2 version tag:** `w2-2026-10-22` (created locally with the finished W2 commit).
 The local W2 files need to be pushed to that repository before using the URL
@@ -81,8 +86,9 @@ Our saved notebook has 17 executed code cells without error outputs. We obtained
 investigation, not causal findings or rankings of crew quality. The source lacks
 31 December 2024 and contains no observed duration above 20 minutes.
 
-We used Codex for technical assistance, analytical code, figures and drafts.
-We adopted and reviewed our criteria; we do not claim unaided code authorship.
+We used Codex to support coding, figure preparation and drafting. The team
+selected the problem and reviewed the stated criteria and findings; we do not
+claim unaided code authorship.
 Matias reviewed row flow/P90 and Clemente reviewed borough/hour comparisons
 and limitations. We received no W1 instructor feedback.
 
