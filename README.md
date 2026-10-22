@@ -54,10 +54,9 @@ coding, validation checks, and the wording of explanations. The team remains
 responsible for reviewing the results and defending its choices at the workshop.
 
 **Repository:** https://github.com/matiasudd/lfb-business-intelligence
-**W2 version tag:** `w2-2026-10-22` (created locally with the finished W2 commit).
-The local W2 files need to be pushed to that repository before using the URL
-as proof of W2 submission. This README does not claim that a GitHub push or
-course-platform submission has occurred.
+**W2 version tag:** `w2-2026-10-22-final`. The notebook, README and supporting
+files are published on `main` in the public repository. A separate submission
+to the course platform, if required, remains the team's responsibility.
 
 ## Historical C1 delivery
 
@@ -65,7 +64,7 @@ We are Matias Munoz Hoffmann and Clemente Ibarra. We investigate vehicle
 mobilisation-to-arrival times in published London Fire Brigade records for
 2023-2024. Our unit is one vehicle mobilisation, not one emergency.
 
-## Our current submission
+## C1 submission
 
 We keep our current delivery in [`GROUP_11_C1/`](GROUP_11_C1/).
 Our [submission README](GROUP_11_C1/README.md) describes the sources, software,
@@ -98,6 +97,5 @@ Those are not our current delivery; we use `GROUP_11_C1/` for the final files.
 Contains London Fire Brigade / Greater London Authority information; source
 attribution and interpretation limits are recorded in our submission.
 
-We maintain this repository privately. Collaborator and instructor invitations
-remain pending. Publishing here does not constitute a Canvas submission.
-We still need to package `GROUP_11_C1/` as ZIP or RAR and upload it to Canvas.
+The C1 section records the earlier deliverable. GitHub publication alone does
+not establish whether a course-platform submission was completed.
