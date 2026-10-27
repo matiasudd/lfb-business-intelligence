@@ -78,3 +78,39 @@ older notebook remain preparation history, not final delivery files.
 The supplied course announcement defines the C1 scope. Matías reported that the
 London case was permitted. No additional project-specific instructor feedback
 has been supplied for this record as of 27 September 2026.
+
+## W2 rubric review on 27 October 2026
+
+The team clarified the C1 instructor's feedback: using a moving P90-based
+comparison reference would change the threshold as times improve. C1's P90 of
+552 seconds informed the team's fixed, round 600-second threshold. W2 measures
+the percentage of eligible mobilisations at or above that threshold and keeps
+P90 as a supporting measure. The threshold is exploratory, not an official
+service target.
+
+At the team's request, Codex applied the rubric review to the W2 builder,
+notebook and README. Revisions add numerical interpretations of all four
+figures, the sample and retrospective holdout; explicit expected data types;
+and visible counts for missing duration components and the zero-duration
+boundary observation. Hillingdon and 11:00 GMT are explicitly connected to
+the revised C1 conclusions. No source or KPI eligibility rule was changed.
+
+The retained W1 source manifest was copied to
+`docs/w2/w1_source_manifest.json`. Its original CSV URL, retrieval timestamp,
+size and SHA256 match the preserved C1 source manifest. W2 checks this agreement
+programmatically. This supports continuity of the retained materials without
+asserting which files were submitted on the course platform.
+
+The earlier C1 artifacts remain unchanged. The previous W2 tag is preserved;
+the reviewed W2 version is identified by `w2-2026-10-27-reviewed`. Codex support
+for these revisions is covered by the W2 AI-use disclosure. No additional
+individual student review is inferred from the automated checks.
+
+Reproduction was checked from a fresh clone of the existing repository with a
+new local Python 3.12 environment installed from `requirements.txt`. The builder
+completed, Jupyter nbconvert executed all 13 code cells without error outputs,
+and `scripts/verify_w2.py` passed. It verified four figures, a 171-word management
+summary, five passing critical quality checks, 384,627 partitioned rows, no
+incident overlap, the missing-component and zero-duration counts, and matching
+W1/C1 source manifests. All four regenerated figures were visually inspected.
+The KPI remained 26,367 / 384,627, or 6.855213%.

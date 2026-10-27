@@ -27,6 +27,8 @@ We continue the C1 question: which boroughs and dispatch hours warrant closer in
 
 **Objective:** reduce the share of published eligible vehicle mobilisations with a mobilisation-to-arrival time of at least 10 minutes, and identify segments for contextual review. **Primary KPI:** `100 × count(AttendanceTimeSeconds >= 600) / count(eligible mobilisations)` within the stated period/segment. The numerator and denominator use the same C1 eligibility rules. Exactly 600 seconds is included. Higher segment values identify questions for review, not poor performance or a causal effect. The C1 P90 was 552 seconds (9.2 minutes); the team used that upper-tail observation to choose the fixed, round 600-second threshold. The threshold remains 600 seconds when future P90 values change. It is not an independently validated operational standard. Report eligible `n`, median and P90 beside the KPI.
 
+We retain the C1 business problem, dataset and observation unit. The revised KPI responds to instructor feedback about a moving comparison threshold: C1's P90 informs the initial choice of 600 seconds, but does not reset that threshold in later periods. Even if a future P90 falls to six minutes, we will still calculate the percentage lasting at least ten minutes.
+
 **Source:** [official LFB mobilisation catalogue](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65); local source snapshot retrieved 23 September 2026, as recorded in `GROUP_11_C1/data/source_manifest.json`. C1's executed `GROUP_11_C1/analysis/C1_LFB.ipynb`, audit and cleaned case are retained. [LFB's published attendance methodology](https://www.london-fire.gov.uk/media/8863/foia84201-response-times-of-fire-brigades-and-data-collation-response.pdf) uses further first/second-appliance and exclusion rules; our KPI is not that official measure.
 
 ### Feedback to action
@@ -37,22 +39,22 @@ We continue the C1 question: which boroughs and dispatch hours warrant closer in
 | Self-audit of C1 geography | Missing borough labels remain in eligible records. | Keep `Unknown` in the global denominator, show it separately, and omit it from named-borough ranking. No imputation. | Validation checks, borough figure |
 | Self-audit of W1/C1 exploration | The whole source informed earlier choices. | Treat the chronological test subset as an independent calculation after the W2 protocol is fixed, **not** as a pristine unseen prediction benchmark. | Sampling, leakage audit, holdout section |
 
-**Change to the C1 conclusion:** P90 differences still describe the tail, but the primary W2 comparison is the fraction of published eligible mobilisations at least 10 minutes. Geographic/hourly contrasts remain unadjusted. No conclusion about causes, crew quality or resource changes follows.
+**Change to the C1 conclusion:** C1 identified Hillingdon's high P90 and the elevated pooled P90 at 11:00 GMT. Under the fixed-threshold KPI, Hillingdon still warrants contextual review: 1,578 of 12,195 mobilisations (12.94%) last at least ten minutes, compared with 6.86% overall. The 11:00 GMT group also remains a review candidate, at 10.13%. These are updated descriptive findings using a different measure. Geographic/hourly contrasts remain unadjusted; no conclusion about causes, crew quality or resource changes follows.
 """)
 
 md("""
 ### Important variables and plausible constraints
-| Variable | Expected type and meaning | Plausible values / missing meaning |
-|---|---|---|
-| `ResourceMobilisationId` | Identifier of one vehicle mobilisation | Nonmissing and unique in the cleaned case; duplicates/conflicts are audited in C1. |
-| `IncidentNumber` | Incident identifier; multiple vehicles may share it | Nonmissing; repetition is expected and matters for splitting. |
-| `DateAndTimeMobilised` | Dispatch timestamp, GMT in the source dictionary | Parseable and in the selected period; missing would prevent temporal use. |
-| `DateAndTimeArrived` | Arrival timestamp | Must not precede mobilisation; unavailable at dispatch, so prohibited as a feature. |
-| `AttendanceTimeSeconds` | Recorded mobilisation-to-arrival seconds | Nonnegative and within 1 second of timestamp difference for eligible rows; not available at dispatch. |
-| `BoroughName` | Published geographic label; absent from the older metadata workbook | Missing means unrecorded geography, represented as `Unknown`, never assigned a borough. Availability at dispatch is unverified. |
-| `hour_gmt` | Derived dispatch hour | Integer 0–23; known at decision time. |
-| `at_least_10m` | W2 outcome indicator | `AttendanceTimeSeconds >= 600`; 0 or 1, unavailable at dispatch. |
-| `TurnoutTimeSeconds`, `TravelTimeSeconds` | Post-dispatch components | Can be missing/inconsistent without invalidating a coherent total; prohibited as dispatch-time predictors. |
+| Variable | Expected type | Meaning and units | Acceptable values and missing-value meaning |
+|---|---|---|---|
+| `ResourceMobilisationId` | Integer (`Int64` when loaded) | Identifier of one vehicle mobilisation | Nonmissing and unique in the cleaned case; duplicates/conflicts are audited in C1. |
+| `IncidentNumber` | String | Incident identifier; multiple vehicles may share it | Preserve leading zeros and punctuation. Nonmissing; repetition is expected and matters for splitting. |
+| `DateAndTimeMobilised` | Timezone-aware datetime | Dispatch timestamp, GMT in the source dictionary, represented as UTC | Parseable and in 2023–2024; missing would prevent temporal use. |
+| `DateAndTimeArrived` | Timezone-aware datetime | Arrival timestamp, represented as UTC | Nonmissing for eligible rows and not before mobilisation. Unavailable at dispatch. |
+| `AttendanceTimeSeconds` | Numeric | Recorded mobilisation-to-arrival duration, seconds | Nonmissing, nonnegative and within 1 second of timestamp difference for eligible rows. Unavailable at dispatch. |
+| `BoroughName` | String/category | Published geographic label; absent from the older metadata workbook | Missing means unrecorded geography, represented as `Unknown`, never assigned a borough. Availability at dispatch is unverified. |
+| `hour_gmt` | Integer | Derived dispatch hour, GMT | 0–23; nonmissing after timestamp validation and known at decision time. |
+| `at_least_10m` | Boolean | W2 outcome indicator | `True` if `AttendanceTimeSeconds >= 600`, otherwise `False`; no missing outcomes in the validated case. Unavailable at dispatch. |
+| `TurnoutTimeSeconds`, `TravelTimeSeconds` | Numeric, allowing missing values | Post-dispatch duration components, seconds | Expected nonnegative when recorded. Missing means a component is unavailable. Their sum should match the total within 1 second when both are present. Missing/inconsistent components do not invalidate a coherent total. Prohibited as dispatch-time predictors. |
 
 The *target population* for possible operational planning is all relevant LFB fire-engine mobilisations in 2023–2024. The *observed population* is the publisher's 2021–2024 file as downloaded on 23 September 2026 and restricted to 2023–2024 dispatches. The *analytical population* is the C1 eligible subset after exact-copy removal and exclusion of unresolved mobilisation IDs. Published data may omit or filter long/non-initial records, and the final day of 2024 is missing. These are coverage risks that a random sample or train/test split cannot repair. Repeated vehicles within an incident also mean rows are not independent emergencies.
 
@@ -67,6 +69,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from IPython.display import display
 
+pd.set_option('display.max_colwidth', None)
 SEED = 423
 THRESHOLD_SECONDS = 600
 root = Path.cwd().resolve()
@@ -77,6 +80,12 @@ source = root / 'GROUP_11_C1/data/case_tables/mobilisations_2023_2024_clean.csv.
 out = root / 'outputs/w2'
 out.mkdir(parents=True, exist_ok=True)
 audit = json.loads((root / 'GROUP_11_C1/data/case_tables/audit.json').read_text(encoding='utf-8'))
+w1_manifest = json.loads((root / 'docs/w2/w1_source_manifest.json').read_text(encoding='utf-8'))
+c1_manifest = json.loads((root / 'GROUP_11_C1/data/source_manifest.json').read_text(encoding='utf-8'))
+original_csv = 'mobilisations_2021_2024.csv'
+assert all(w1_manifest[original_csv][key] == c1_manifest[original_csv][key]
+           for key in ['url', 'retrieved_utc', 'bytes', 'sha256'])
+print('Retained W1/C1 source manifests agree:', c1_manifest[original_csv]['sha256'])
 source_columns = ['ResourceMobilisationId','IncidentNumber','DateAndTimeMobilised',
                   'DateAndTimeArrived','AttendanceTimeSeconds','BoroughName',
                   'TurnoutTimeSeconds','TravelTimeSeconds','PlusCode_Code']
@@ -117,6 +126,8 @@ checks = [
     ('Dispatch time within 2023-2024 UTC', int((~case.DateAndTimeMobilised.between(pd.Timestamp('2023-01-01',tz='UTC'),pd.Timestamp('2025-01-01',tz='UTC'),inclusive='left')).sum()), 'pass if zero', 'Stop on failure; correct scope'),
     ('Missing borough label', int(case.BoroughName.isna().sum()), 'coverage flag', 'Retain as Unknown globally; exclude from named-borough ranking'),
     ('Complete but inconsistent time components', int(component_problem.sum()), 'component flag', 'Retain valid total; omit components from component-only analysis'),
+    ('Missing turnout or travel component', int((~complete_components).sum()), 'component flag', 'Retain timestamp-consistent total; omit from component-only analysis'),
+    ('Zero recorded duration', int(case.AttendanceTimeSeconds.eq(0).sum()), 'review flag', 'Retain if arrival and mobilisation timestamps agree; disclose as a boundary observation'),
     ('Duration above 20 min in published extract', int(case.AttendanceTimeSeconds.gt(1200).sum()), 'coverage flag', 'Do not infer that unobserved long responses never occur'),
 ]
 check_table = pd.DataFrame(checks, columns=['check','affected_rows','interpretation','action'])
@@ -126,6 +137,10 @@ assert (check_table.iloc[:5].affected_rows == 0).all()
 assert case.hour_gmt.between(0,23).all()
 assert len(case) + audit['excluded_kpi_rows'] == audit['period_rows_after_exact_dedup']
 print('Before W2 checks:',len(case),'| after W2 checks:',len(case),'| additional removals: 0')
+""")
+
+md("""
+**Validation interpretation.** There are 1,816 rows with at least one missing turnout or travel component and no inconsistent sums among rows with both components recorded. Missing components are not missing total durations: these rows remain in the KPI because their totals agree with arrival minus mobilisation. One recorded duration is zero and timestamp-consistent, so it is retained and disclosed. These flags cause no additional row removals.
 """)
 
 code("""
@@ -182,6 +197,10 @@ ax.legend(); fig.tight_layout(); plt.show()
 """)
 
 md("""
+**Figure 1 interpretation.** The median is 5.65 minutes and P90 is 9.20 minutes. The distribution has a right tail, and 6.86% of eligible mobilisations last at least ten minutes. The display extends through P99, at 14.45 minutes; all eligible rows remain in the KPI. The observed 20-minute ceiling does not establish the maximum duration of real LFB mobilisations.
+""")
+
+md("""
 ### Figure 2 — Borough comparison
 Compare the rate and eligible count for named boroughs. `Unknown` is visible in the table but is not a borough and is not ranked. The comparison is unadjusted for distance, incident mix and resource availability.
 """)
@@ -208,6 +227,10 @@ ax.legend(loc='lower right'); fig.tight_layout(); plt.show()
 """)
 
 md("""
+**Figure 2 interpretation.** Hillingdon has 1,578 qualifying mobilisations out of 12,195 eligible rows, or 12.94%, compared with 6.86% overall. It remains an example for contextual investigation under the revised KPI. The displayed view selects the ten highest rates among named boroughs with at least 1,000 eligible rows; it is not a complete borough listing or a ranking of crew quality. Distance, incident mix and resource availability are not controlled.
+""")
+
+md("""
 ### Figure 3 — Complete-month trend
 The period-wide KPI above includes available December 2024 records. This trend omits that *incomplete month* so adjacent points have complete calendar coverage. A complete calendar month still does not prove all real events were published.
 """)
@@ -226,6 +249,10 @@ ax.legend(fontsize=8); fig.tight_layout(); plt.show()
 """)
 
 md("""
+**Figure 3 interpretation.** Among complete observed months, the rate ranges from 4.98% in April 2023 to 8.14% in November 2023. It fluctuates rather than showing a sustained decline. These descriptive movements do not establish seasonality or explain their causes. December 2024 is omitted from this trend because its final calendar day is absent; available December records still contribute to the period-wide KPI.
+""")
+
+md("""
 ### Figure 4 — Dispatch hour
 Each hourly rate pools the available 2023–2024 dispatch dates. Hour labels are GMT, not local daylight-saving time. A higher rate at an hour does not prove traffic or staffing caused it.
 """)
@@ -240,6 +267,10 @@ ax.set(title='Share lasting at least 10 minutes by dispatch hour, 2023–2024',x
        ylabel='At least 10 minutes (% of eligible hour rows)',xticks=range(0,24,2))
 ax.legend(); fig.tight_layout(); plt.show()
 display(hourly.nlargest(3,'at_least_10m_pct').round(2))
+""")
+
+md("""
+**Figure 4 interpretation.** The highest pooled hourly rate occurs at 11:00 GMT: 1,967 of 19,425 mobilisations, or 10.13%, compared with 6.86% overall. This preserves the C1 finding that the 11:00 GMT group merits contextual review, now measured against a fixed threshold. The comparison combines available dates in both years and cannot establish that traffic or staffing caused the difference.
 """)
 
 md("""
@@ -262,6 +293,10 @@ sample_comparison['KPI difference vs full (pp)']=sample_comparison.at_least_10m_
 sample_comparison.to_csv(out/'sample_comparison.csv')
 display(sample_comparison.round(3))
 print('This is population sampling inside the available file, not the train/test split below.')
+""")
+
+md("""
+**Sample comparison interpretation.** The reproducible sample contains 96,157 rows. Its KPI is 6.910%, compared with 6.855% in the complete analytical dataset, a difference of 0.054 percentage points. Hillingdon represents 3.226% of the sample versus 3.171% of the complete dataset; Unknown geography represents 0.341% versus 0.335%. The sample approximately reproduces these selected characteristics of the available file. This does not establish representativeness of all real LFB mobilisations: source selection, the absent day and missing geography remain limitations. A train/test split also partitions this same available file and cannot repair those coverage limitations.
 """)
 
 md("""
@@ -305,7 +340,8 @@ incident_sets={name:set(part.IncidentNumber) for name,part in partition.items()}
 overlap={f'{a}-{b}':len(incident_sets[a]&incident_sets[b]) for a,b in [('train','validation'),('train','test'),('validation','test')]}
 assert all(count==0 for count in overlap.values()),f'Incident overlap requires explicit boundary handling: {overlap}'
 assert sum(len(part) for part in partition.values())==len(case)
-assert train_df.DateAndTimeMobilised.max()<validation_df.DateAndTimeMobilised.min()<test_df.DateAndTimeMobilised.min()
+assert train_df.DateAndTimeMobilised.max()<validation_df.DateAndTimeMobilised.min()
+assert validation_df.DateAndTimeMobilised.max()<test_df.DateAndTimeMobilised.min()
 assignment=case[['ResourceMobilisationId','IncidentNumber','DateAndTimeMobilised','split']]
 assignment.to_csv(out/'split_assignment.csv.gz',index=False,compression='gzip')
 print('Incident overlap:',overlap,'| missing split rows:',case.split.isna().sum())
@@ -343,6 +379,10 @@ test_complete_months=test_df[test_df.DateAndTimeMobilised.lt(pd.Timestamp('2024-
 print(f'Test July–November 2024 (complete calendar months): n={len(test_complete_months):,}, '
       f'at-least-10-min rate={100*test_complete_months.at_least_10m.mean():.3f}%; '
       f'test including partial December: {100*test_df.at_least_10m.mean():.3f}%')
+""")
+
+md("""
+**Retrospective robustness interpretation.** The rate is 6.702% in train, 6.712% in validation and 7.270% in test. The later period is 0.568 percentage points above train, so the overall rate should not be assumed constant across periods. The test rate is 7.275% when restricted to complete July–November months, close to 7.270% when available December records are included. This sensitivity concerns this particular incomplete-month exclusion; it does not establish complete source coverage. No predictive accuracy, causal deterioration or statistical significance follows from these descriptive comparisons. No variables, cleaning thresholds or preprocessing parameters are changed in response to these test results.
 """)
 
 md("""
