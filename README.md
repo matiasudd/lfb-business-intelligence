@@ -1,5 +1,28 @@
 # London Fire Brigade BI — Group 11
 
+## Certamen 2 delivery
+
+**Authors:** Matías Muñoz Hoffmann and Clemente Ibarra. C2 continues the C1/W2
+London Fire Brigade project and classifies vehicle mobilisations lasting at
+least 10 minutes, using dispatch hour known at mobilisation. The fixed cutoff
+is exploratory, not an official service standard.
+
+- [Executed notebook](notebooks/C2_LFB.ipynb)
+- [Brief PDF (two pages)](outputs/c2/C2_Brief.pdf)
+- [Presentation](outputs/c2/C2_Presentation.pptx)
+- [Canvas submission ZIP](outputs/c2/GROUP_11_C2.zip)
+
+The ZIP contains only these three required files. The notebook preserves its
+executed results and references the C1 cleaned snapshot already in this
+repository. In the retrospective test, the model's recall was 62.1% and its
+precision was 9.4%; the many false positives prevent operational use. C1/W2
+had already explored the full period, so this is not an untouched future test.
+No instructor feedback on W2 had been received when C2 was prepared. The
+notebook records contributions and use of AI as a support tool.
+
+Publishing these files on GitHub does not mean they have been submitted to
+Canvas. Follow the course instructions to upload the ZIP separately.
+
 ## Workshop 2 delivery (C1 continuation)
 
 **Authors:** Matías Muñoz Hoffmann and Clemente Ibarra. The executable English
