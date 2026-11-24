@@ -1,0 +1,252 @@
+{
+  "version": "C3-2026-11-23-r1",
+  "no_data_files": true,
+  "reviewer_execution_required": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 154,
+      "sha256": "ddab0eac89c2f8d36032a73c86f284043befec0f1daad7a82382cb57e24999c8"
+    },
+    {
+      "path": "docs/readable_views/01_Data_and_EDA.html",
+      "bytes": 179857,
+      "sha256": "323113a61e1a7647bea50b9c6a2153ba82e56748c9accd04e556b031c9143bff"
+    },
+    {
+      "path": "docs/readable_views/02_Models_and_Evaluation.html",
+      "bytes": 92037,
+      "sha256": "fdbc82a98f71c5a0a5dbcacc8f48bfa35b65fbded312393c0fcf104a5ca9cdb7"
+    },
+    {
+      "path": "docs/readable_views/03_Visual_System_and_Decisions.html",
+      "bytes": 381283,
+      "sha256": "8c43b1178b4fb4134840c039052951e5f08b6fb6aee8e83be81b3772a19b84ee"
+    },
+    {
+      "path": "docs/RUBRIC_COVERAGE.md",
+      "bytes": 2865,
+      "sha256": "f3f0b8fbfe11b6dc12d02eeaacba66bfbb3435b55d9070e7c3d07c6ef36c1cc9"
+    },
+    {
+      "path": "figures/01_distribution.png",
+      "bytes": 46572,
+      "sha256": "163311fe957668dc99d351a86aa27efbefeed54e6cbdd4beff90191d96c526ce"
+    },
+    {
+      "path": "figures/01_distribution.svg",
+      "bytes": 11723,
+      "sha256": "621f2c6b4115eb07a150a6878f0fcf17cc319ef55bcd228109211d1ee582ab6c"
+    },
+    {
+      "path": "figures/02_borough.png",
+      "bytes": 34737,
+      "sha256": "be3c6f381b29aab8c66d939baa36026cdf7551cf3ff544af5a4cc5ab6e39fba9"
+    },
+    {
+      "path": "figures/02_borough.svg",
+      "bytes": 10078,
+      "sha256": "cabf8373fd7d2af3e4acc09a9e669571c78251a40f5473af86875e4706e9fcd0"
+    },
+    {
+      "path": "figures/03_hour.png",
+      "bytes": 35443,
+      "sha256": "e65bf3425bd019e26186cfd3525aff98ca4322296b835c6f6a5ad4a88942fb65"
+    },
+    {
+      "path": "figures/03_hour.svg",
+      "bytes": 10107,
+      "sha256": "85b8bc35f48916d1c6eb90e43e3c6894a960d008c23f091a20596e7662630e6f"
+    },
+    {
+      "path": "figures/final_confusion.png",
+      "bytes": 44964,
+      "sha256": "a01104ed20d51178c12574dc2417c9a8d7b06994ed979a1a855ac6402cd4fc8c"
+    },
+    {
+      "path": "figures/final_confusion.svg",
+      "bytes": 8087,
+      "sha256": "5f3c25a1e668bc915703b646069fbd5d379456a9a99cf520fa52c314babcf70f"
+    },
+    {
+      "path": "figures/w3_composition_after.png",
+      "bytes": 47984,
+      "sha256": "8e59feee467ba648b57abbe99109960321d735e646dd2f6f212721a403e58c04"
+    },
+    {
+      "path": "figures/w3_composition_after.svg",
+      "bytes": 8653,
+      "sha256": "957ef010212981edf82accce12f58c318eb3ce472fecf7112b2155a890eb861b"
+    },
+    {
+      "path": "figures/w3_composition_before.png",
+      "bytes": 47986,
+      "sha256": "ef25fbac5f5ca6a3d54eccb01b869a1a2e0a60c54998b38c13fec26d2215423c"
+    },
+    {
+      "path": "figures/w3_composition_before.svg",
+      "bytes": 8652,
+      "sha256": "fca5446cf32769c06b9f88591699756bc330b1c843ca90cfb12816a7a3f9443d"
+    },
+    {
+      "path": "figures/w3_errors_after.png",
+      "bytes": 49251,
+      "sha256": "18372e5242a47018dab96a6236eeb154364b4a10fff3a2f376db80721b312af0"
+    },
+    {
+      "path": "figures/w3_errors_after.svg",
+      "bytes": 8096,
+      "sha256": "aaf8ad85db8bcbbf80a3c025c629a5745ce4dede9c15a603b376c1548219b9c1"
+    },
+    {
+      "path": "figures/w3_errors_before.png",
+      "bytes": 34794,
+      "sha256": "9d153ac8b3623ede15d526ef8b3442a781d3f156eb09599a1f019d2fddfc7cf5"
+    },
+    {
+      "path": "figures/w3_errors_before.svg",
+      "bytes": 7446,
+      "sha256": "5ea535b673ca1efb4bd3ceaa8ab46ea1ac4b4ffdb0b5d61fb48e9e128ee8b592"
+    },
+    {
+      "path": "figures/w3_metrics_after.png",
+      "bytes": 48476,
+      "sha256": "7787e3619d51e6f9f9877da2a2ed2eb2dd6357b781b92b36d8f2f1ee67a1c956"
+    },
+    {
+      "path": "figures/w3_metrics_after.svg",
+      "bytes": 11715,
+      "sha256": "f086817bacbc6f2590c6857cba4596437dede89142eab664631fb86043c419b1"
+    },
+    {
+      "path": "figures/w3_metrics_before.png",
+      "bytes": 44977,
+      "sha256": "409df501512e603c1c262a6b27c4b679adfe285a4deeff8602d6271945ead20c"
+    },
+    {
+      "path": "figures/w3_metrics_before.svg",
+      "bytes": 10160,
+      "sha256": "d86c41b32d7955844acbfcaf2399095bd80b23497f583a7483a8ea36162cb32c"
+    },
+    {
+      "path": "notebooks/01_Data_and_EDA.ipynb",
+      "bytes": 196894,
+      "sha256": "cf6f923c6548530acd7ef6837ef2c64efb5a333ffdc71b09fc1b3b4f2d261a1c"
+    },
+    {
+      "path": "notebooks/02_Models_and_Evaluation.ipynb",
+      "bytes": 106240,
+      "sha256": "d3bf09eeec479d4d2ee4674e629240fa1f58a94fff6f6f7716346c3f83e6f605"
+    },
+    {
+      "path": "notebooks/03_Visual_System_and_Decisions.ipynb",
+      "bytes": 391610,
+      "sha256": "c3362bf2de3e1901157831c4e4c84bf4167abc5383b571d9c9d520d4646b0f04"
+    },
+    {
+      "path": "presentations/build_presentations.mjs",
+      "bytes": 15289,
+      "sha256": "383a3d80d5ee0286596cf992612313b147e1a967b5f6544c3a06dae5111434d3"
+    },
+    {
+      "path": "presentations/C3_Grupo11.pptx",
+      "bytes": 63074,
+      "sha256": "112c0de97e8e00c5f56a898734be773c54f22ab9f42efcff3d82621540d252a2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5059,
+      "sha256": "04355930711c966c0abedcbfd8efc1d29e26750fd29590b385e91018844c78ba"
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/method_record/blend_models.py",
+      "bytes": 4672,
+      "sha256": "733ebf030199fcbb7814247372043096e3cc4de6099bbe2cbfeb6ddceee25445"
+    },
+    {
+      "path": "src/method_record/evaluate_round2.py",
+      "bytes": 8447,
+      "sha256": "aed25b15b03414217cd73c2fd8932ab111595790879842be2c618357c186616b"
+    },
+    {
+      "path": "src/method_record/experiment.py",
+      "bytes": 11023,
+      "sha256": "30b8561512ee2f5f7569517ba9d849fb0ad366492b19156e353603fc2fa0ab48"
+    },
+    {
+      "path": "src/method_record/extra_logistic.py",
+      "bytes": 4513,
+      "sha256": "839156cb50a6510f07bfd69763ae28ef7a7a686018f8d82ff02664215998a6ff"
+    },
+    {
+      "path": "src/method_record/features_v2.py",
+      "bytes": 8636,
+      "sha256": "2d5b31e7e6186c71503c06ea363b18ca44917a0ab74846979e11e45bfc907b4b"
+    },
+    {
+      "path": "src/method_record/location_features.py",
+      "bytes": 7012,
+      "sha256": "d790d7ffbf08a29e79db582b63f1bddc4f7d62e15712beb5bf3f1f01acbb07e4"
+    },
+    {
+      "path": "src/method_record/refit_recent.py",
+      "bytes": 5872,
+      "sha256": "e8abf803348e4efe1fb82b8d000536afaa688c7bc250ca70b70884a9571ae08a"
+    },
+    {
+      "path": "src/method_record/refit_verify.py",
+      "bytes": 3277,
+      "sha256": "eab6e392ebfeaea799f3554919935765327bcb707b00e37f8d03fdb9765dd30a"
+    },
+    {
+      "path": "src/method_record/rolling_outcomes.py",
+      "bytes": 3292,
+      "sha256": "603c654920f19cab65874b657ba93f5d350181c9b26ef024922f0fd2c510a067"
+    },
+    {
+      "path": "src/method_record/search_locations.py",
+      "bytes": 4864,
+      "sha256": "042a170c15a3c9b1ec135f7df040cf9c9009a59851e3d940c6c16607886c8088"
+    },
+    {
+      "path": "src/method_record/search_rolling.py",
+      "bytes": 3319,
+      "sha256": "6ae5302d99acf1bbb98357ed53a0fbc2dc425deb30439d29da9ce33ff6480b1a"
+    },
+    {
+      "path": "src/method_record/search_station_distance.py",
+      "bytes": 4445,
+      "sha256": "805188bebf51625f8ffe847364b127134d17bb1f0aac0d940630b40e029fedef"
+    },
+    {
+      "path": "src/method_record/search_v2.py",
+      "bytes": 6476,
+      "sha256": "d33c987200aca68cc54474c4cb4fd0a9125f6ffacbd248d3d86d09785b753ccf"
+    },
+    {
+      "path": "src/method_record/station_geography.py",
+      "bytes": 6145,
+      "sha256": "4d5b8d65faa22736db0cc05f7a95e12f7584c827270efd23d13066059d41c17e"
+    },
+    {
+      "path": "src/saved_notebook_views.py",
+      "bytes": 3375,
+      "sha256": "bd08124eb002a3da35de50b3fa391c9e4acf1866dd8b118ba8c318e5dd661851"
+    },
+    {
+      "path": "src/visual_system.json",
+      "bytes": 642,
+      "sha256": "3741b0c3e29b06ea55b4b65b31aefa32d82c7181fda0fa84712c00810a2f231a"
+    },
+    {
+      "path": "src/visual_system.py",
+      "bytes": 4817,
+      "sha256": "86ac83f233ddd14c6363fcc76574df86178f2a0d59167037fc5ccda73458f7c9"
+    }
+  ]
+}

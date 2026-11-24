@@ -1,0 +1,18 @@
+{
+  "font": "DejaVu Sans",
+  "slide_font": "Arial",
+  "ink": "#14283D",
+  "model": "#16446D",
+  "attention": "#A95810",
+  "reference": "#74899E",
+  "context": "#CCD8E3",
+  "grid": "#DBE3EB",
+  "background": "#FFFFFF",
+  "rules": [
+    "Navy identifies model evidence; grey identifies the reference.",
+    "Amber draws attention to long cases or the error under discussion; labels state which quantity.",
+    "Percentages use common 0\u2013100 scales when comparing the same metric.",
+    "Counts and rates always show their denominator or sample size.",
+    "Labels and emphasis remain meaningful without colour alone."
+  ]
+}
